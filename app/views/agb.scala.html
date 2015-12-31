@@ -10,21 +10,18 @@
 		<link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
 		<script src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
 		<script src="@routes.Assets.versioned("javascripts/bootstrap.js")"></script>
+		<link href="@routes.Assets.versioned("stylesheets/kontakt.css")" rel="stylesheet" />
 		<link href="@routes.Assets.versioned("stylesheets/index.css")" rel="stylesheet" />
-		<link href="@routes.Assets.versioned("stylesheets/upload.css")" rel="stylesheet" />
-		<link href="@routes.Assets.versioned("stylesheets/stellenangebot.css")" rel="stylesheet" />
 		<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
 		<script src="@routes.Assets.versioned("javascripts/angular.js")"></script>
 		<script src="@routes.Assets.versioned("javascripts/startseite.js")"></script>
 		<script src="@routes.Assets.versioned("javascripts/header.js")"></script>
-		<script src="@routes.Assets.versioned("javascripts/profil.js")"></script>
-		
 	</head>
 	<body>
 		<div id="background">
 
 		</div>
-	<div class="navbar navbar-default" role="navigation" id="navigation-bar" ng-app="header">
+		<div class="navbar navbar-default" role="navigation" id="navigation-bar" ng-app="header">
 			<div class="container-fluid" id="navigation">
 				<div class="navbar-header" id="navigation-titel">
 					<a class="navbar-brand titel" href="#" id="titel">StaJ </a>
@@ -43,12 +40,12 @@
 						<li>
 							<a href="/upload" class="menupunkte" id="upload">Praktikumupload</a>
 						</li>
-						<li>
+						<li class="active" class="list_menupunkt">
 							<a href="/contact" class="menupunkte">Kontakt</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right" ng-controller="loginCtrl">
-						<li class="dropdown" id="logindorpdown" class="active" class="list_menupunkt">
+						<li class="dropdown" id="logindorpdown">
 							<a href="#" class="dropdown-toggle menupunkte" data-toggle="dropdown" id="login">Login<span class="caret"></span></a>
 							<ul id="login-dp" class="dropdown-menu">
 								<li>
@@ -82,7 +79,7 @@
 									<div class="row">
 										<div class="col-md-12">
 											<div class="bottom text-center"><a href="/profil">Zu Eurem Profil</a></div>
-											<input type="button" value="Ausloggen" ng-click="logout()" class="btn btn-primary btn-block" style="margin-bottom:10px"></input>
+											<input type="button" value="Ausloggen" class="btn btn-primary btn-block" ng-click="logout()" style="margin-bottom:10px"></input>
 										</div>
 									</div>
 								</li>
@@ -92,169 +89,7 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Navigation - Ende----------------------------------------------------------------------------------------------------------------------------------- -->
-		<div id="profilBody" ng-app="profil" ng-controller="profilCtrl">
-			<div class="col-md-1"></div>
-			<div class="col-md-10" class="maindiv">
-			<div class="maintextdiv">
-					
-					<h3>Profil</h3>
-					
-				<div class = "divProfildaten">
-					<h4>Daten bearbeiten</h4>
-						<div id="emailTeil">
-						<p>E-Mail: {{aktEmail}}
-						<button class="btn btn-primary details" onclick="toggler('hiddenEmail')">
-								<span class="glyphicon glyphicon-pencil"></span> Bearbeiten
-						</button>
-						<div id="hiddenEmail" class="divHidden">
-							Aktuelles Passwort:  <input type="password" class="profildaten" ng-model="aktPasswort1" /> </br>
-							Geben Sie eine neue E-Mail Adresse ein: <input type="email" class="profildaten" ng-model="neueEmail" /> </br>
-							Neue E-Mail Adresse wiederholen: <input type="email" class="profildaten" ng-model="neueEmailW" />
-							<button class="btn" ng-click = "updateEmail()"><span class="glyphicon glyphicon-ok"></span>	
-							</button>
-							<p class="clientFehler">{{falscheEingabeMail}}</p> 
-						</div>
-						</p>
-						</div>
-						<div id="passwortTeil">
-						<p>Passwort: **********
-						<button class="btn btn-primary details" onclick="toggler('hiddenPw')">
-								<span class="glyphicon glyphicon-pencil"></span> Bearbeiten
-						</button>
-						<div id="hiddenPw" class="divHidden">
-						Aktuelles Passwort:  <input type="password" class="profildaten" ng-model="aktPasswort2" /> </br>
-						Passwort eingeben: <input type="password" class="profildaten" ng-model="neuesPasswort"/>
-						<p>Passwort wiederholen: <input type="password" class="profildaten" ng-model="neuesPasswortw"/>
-						<button class="btn" ng-click="updatePasswort()"><span class="glyphicon glyphicon-ok"></span>	
-						</button></p>
-						<p class="clientFehler">{{falscheEingabePasswort}}</p>
-						</div>
-						</div>
-				</div>
-		
-				<div class="col-md-10 col-md-offset-1 maindiv" id="maindiv">
-				<div class="maintextdiv" style="padding-top: 2%;">
-					<h3 style="margin-bottom: 3%; top: 2%;">Meine Stellenangebote</h3>
-					<div style="max-height:500px; overflow-y: scroll;">
-						<div class="listing listing-default" ng-repeat="stelle in stellen">
-							<div class="listing-content">
-								<h3 class="lead">{{stelle.titel}}</h3>
-								<p>
-									{{stelle.stadt}}, {{stelle.datum}}
-								</p>
-							</div>
-							<div class="listingfooter">
-								<button class="btn btn-primary details" data-toggle="modal" ng-click="stellendatenHolen(stelle.id_pra)" data-target="#bearbeitenmodal">
-									<span class="glyphicon glyphicon-pencil"></span> Bearbeiten
-								</button>
-							</div>
-							<div class="listingfooter">
-								<button class="btn btn-primary details" ng-click="stelleLoeschen(stelle.id_pra)"data-toggle="modal" data-target="#modal_loeschen">
-									<span class="glyphicon glyphicon-trash"></span> Löschen
-								</button>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				</div>
-
-				</div>
-			</div>
-			
-			<div class="col-md-1"></div>
-			<div class="modal fade" id="bearbeitenmodal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">Bearbeiten</h4>
-					</div>
-					
-					<div class="modal-body">
-						<p>Titel</p>
-									<input type="text" placeholder="Nach was suchen Sie?" id="wasinputangebot" ng-model="was"/>
-						
-						<p>Link</p>
-									<input type="text" placeholder="Link zur Stellenbeschreibung (Homepage)" ng-model="link" id="link" />
-									
-						<p>Studiengang</p>
-						
-									<select id="selectstudiangebot" multiple>
-										<option value="Informatik">Informatik</option>
-										<option value="BWL">BWL</option>
-										<option value="Maschinenbau">Maschinenbau</option>
-									</select>
-					
-						<p>Stadt/PLZ</p>
-									<input type="text" placeholder="Stadt/PLZ" id="stadtangebot" ng-model="stadt"/>
-								
-								<p>Bundesland</p>
-								
-									<select id="bundeslandangebot">
-										<option value="">Bundesland</option>
-										<option value="Bayern">Bayern</option>
-										<option value="Ba-Wü">Ba-Wü</option>
-									</select>
-								
-
-								<p>Beginn</p>
-									<input type="date" id="datumangebot"/>
-								
-								<p>Dauer</p>	
-									<select id="selectdauerangebot">
-										<option value="">Monate</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>
-								
-								<p>Beschreibung</p>
-										<textarea id="desc" ng-model="beschreibung" placeholder="Beschreibung der Stelle ... "></textarea>
-										
-					</div>
-					<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ngStelleBearbeiten()">
-							Ok
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Abbrechen
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-			<div class="modal fade" id="modal_loeschen">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">Löschen</h4>
-					</div>
-					<div class="modal-body">
-						Wollen Sie das Stellenangebot wirklich löschen?
-					</div>
-					<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ngStelleLoeschen()">
-							Ok
-						</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Abbrechen
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-				
-			</div><!-- /.modal-dialog -->
-			
-		</div><!-- /.modal -->
-		</div>
-		
-		<div class="modal fade" id="modal_registrierung" ng-app="startseite" ng-controller="registrierungCtrl">
+		<div class="modal fade" id="modal_registrierung" ng-app="registr" ng-controller="registrierungCtrl">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -343,6 +178,56 @@
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+
+		<!-- Navigation - Ende----------------------------------------------------------------------------------------------------------------------------------- -->
+		<div class="mainbody">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" class="maindiv">
+				<div class="maintextdiv">
+					<h1 id="titel2">StaJ</h1>
+			
+															Allgemeine
+Geschäftsbedingungen (AGB) <br>
+1. Geltung
+Die nachfolgenden Allgemeinen Geschäftsbedingungen gelten für diesen Vertrag zwischen Auftragnehmer und Auftraggeber. Sie
+gelten auch für alle in Zukunft zwischen Auftragnehmer und Auftraggeber abgeschlossenen Verträge. Die Allgemeinen Geschäftsbedingungen
+gelten nicht, soweit die Parteien im Einzelfall eine hiervon abweichende Regelung getroffen haben.<br>
+2. Allgemeine Geschäftsbedingungen des Auftraggebers
+Allgemeine Geschäftsbedingungen des Auftraggebers werden nicht Vertragsbestandteil, auch wenn der Auftragnehmer diesen
+Bedingungen nicht ausdrücklich widerspricht.<br>
+3. Eigentumsvorbehalt
+Vom Auftragnehmer gelieferte Gegenstände bleiben bis zur vollständigen Bezahlung der vereinbarten Vergütung Eigentum des
+Auftragnehmers, soweit kein Eigentumsübergang an den Auftraggeber aus gesetzlichen Gründen stattfindet. Der Auftragnehmer
+ist berechtigt, dem Auftraggeber Eigentum an gelieferten Gegenständen zu verschaffen und eine Abschlagszahlung für die Lieferung
+der übereigneten Gegenstände zu verlangen.<br>
+4. Gewährleistung
+Ist eine vom Auftragnehmer erbrachte Leistung mangelhaft, kann der Auftraggeber Nacherfüllung verlangen. Wird der Mangel
+durch die Nacherfüllung des Auftragnehmers nicht beseitigt, kann der Auftraggeber die Vergütung des Auftragnehmers mindern.
+Weitere Gewährleistungsrechte stehen dem Auftraggeber vorbehaltlich der nachfolgenden Regelung zur Haftung nicht zu.
+Die Gewährleistungsfrist beträgt ein Jahr, es sei denn, Gegenstand des Vertrages ist ein Bauwerk oder ein Werk, dessen Erfolg
+in der Erbringung von Planungs- oder Überwachungsleistungen hierfür besteht.
+Ein offensichtlicher Mangel kann nur innerhalb von zwei Wochen ab Beginn der Gewährleistungsfrist gerügt werden. Offensichtlich
+ist ein Mangel, der einem nicht fachkundigen Auftraggeber ohne nähere Untersuchung der erbrachten Leistungen auffällt.
+Die Anzeige eines Mangels ist nur wirksam, wenn sie schriftlich erfolgt.<br>
+5. Haftung
+Die Haftung des Auftragnehmers für einen Schaden, der nicht auf einer Verletzung des Lebens, des Körpers oder der Gesundheit
+beruht, ist ausgeschlossen, wenn der Schaden auf eine lediglich fahrlässige Verletzung einer Pflicht des Auftragnehmers zurückzuführen
+ist und die verletzte Pflicht nicht zu den wesentlichen Vertragspflichten des Auftragnehmers zählt.<br>
+6. Rechnungen und Zahlungen
+Rechnungen können nach Ablauf von zwei Wochen nach Zugang beim Auftraggeber nicht mehr beanstandet werden. Eine Beanstandung
+hat schriftlich zu erfolgen.
+Jede Rechnung ist sofort nach Zugang beim Auftraggeber ohne Abzug zu bezahlen.
+Die Forderung des Auftragnehmers nach einer Abschlagszahlung setzt nicht voraus, dass die Leistungen des Auftragnehmers,
+für die die Abschlagszahlung verlangt wird, durch eine Aufstellung nachgewiesen werden, die eine rasche und sichere Beurteilung
+der Leistungen ermöglicht.<br>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
 	</body>
 	<script>
 		$(document).ready(function() {
@@ -367,10 +252,6 @@
 			});
 		});
 
-		function toggler(divId) {
-		    $("#" + divId).toggle();
-		}
-		
 		function nextTab(elem) {
 			$(elem).next().find('a[data-toggle="tab"]').click();
 		}

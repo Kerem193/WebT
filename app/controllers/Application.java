@@ -20,6 +20,14 @@ public class Application extends Controller {
         return ok(suche.render());
     }
     
+    public Result agb() {
+        return ok(agb.render());
+    }
+    
+    public Result impressum() {
+        return ok(impressum.render());
+    }
+    
     public Result upload() {
     	
     	Cookie name = request().cookies().get("data");
