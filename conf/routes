@@ -39,6 +39,7 @@ POST	/registrierung				controllers.Registrierung.registrierung()
 POST	/login						controllers.Login.login()
 POST	/logout						controllers.Login.logout()
 POST	/upload						controllers.Upload.upload()
+POST	/kontaktNotLogged			controllers.Kontakt.kontaktNotLogged()
 
 # PUTS
 

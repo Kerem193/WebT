@@ -20,6 +20,7 @@
 <script src="@routes.Assets.versioned("javascripts/header.js")"></script>
 </head>
 <body>
+	<h1 style="font-size:0em;">Praktikum Praktika Student Universität Hochschule Fachhochschule</h1>
 	<div id="background"></div>
 	<div class="navbar navbar-default" role="navigation"
 		id="navigation-bar" ng-app="header">
@@ -33,12 +34,14 @@
 						class="icon-bar"></span>
 				</button>
 			</div>
+			
+			
 			<div class="collapse navbar-collapse navbar-menubuilder"
 				id="navigation-menupunkte">
 				<ul class="nav navbar-nav navbar-left">
 					<li class="active" class="list_menupunkt"><a href=""
 						class="menupunkte">Home</a></li>
-					<li><a href="/suche" class="menupunkte">Suche</a></li>
+					<li><a href="/suche" class="mensupunkte">Suche</a></li>
 					<li><a href="/upload" class="menupunkte" id="upload">Praktikumupload</a>
 					</li>
 					<li><a href="/contact" class="menupunkte">Kontakt</a></li>
@@ -128,8 +131,8 @@
 				<p style="margin-top: 2%;">
 				<h4>
 					<i>Suchen Sie nach einer passende Praktiumsstelle in unserem
-						Portal. <br> Mit unserer Suchfunktion können Sie ganz einfach
-						nach den gewünschten Kriterien filtern
+						Portal<a href="/suche" style="text-decoration: none; color:#444;">.</a> <br> Mit unserer Suchfunktion können Sie ganz einfach
+						nach den gewünschten Kriterien filtern<a href="/suche" style="text-decoration: none; color:#444;">.</a>
 				</h4>
 				</i>
 				</p>
@@ -143,9 +146,9 @@
 				<div id="praktAnbieten">
 					<p>
 					<h4>
-						<i>Wollen Sie ein Praktikum anbieten? Dann Registrieren Sie
+						<i>Wollen Sie ein Praktikum anbieten<a href="/suche" style="text-decoration: none; color:#444;">?</a> Dann Registrieren Sie
 							sich in unserem Praktikumsportal und veröffentlichen eine
-							Stellenanzeige!</i>
+							Stellenanzeige<a href="/suche" style="text-decoration: none; color:#444;">!</a></i>
 					</h4>
 					</p>
 					<p>
@@ -159,6 +162,10 @@
 			</div>
 		</div>
 		<div class="footer">
+		
+			<a href="https://www.facebook.com/StaJPraktikumsportal/" style="margin-left: 3%;"><i class="fa fa-facebook-square fa-3x"></i></a>
+			<a href="https://twitter.com/StajPraktikum" style="margin-left: 1%;"><i class="fa fa-twitter-square fa-3x"></i></a>
+		
 		<footer>
 			<a a href="/agb" class="menupunkte">AGB </a><a a href="/impressum" class="menupunkte"> Impressum</a>
 		 </footer>

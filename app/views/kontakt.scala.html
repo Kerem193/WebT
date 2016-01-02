@@ -16,8 +16,11 @@
 		<script src="@routes.Assets.versioned("javascripts/angular.js")"></script>
 		<script src="@routes.Assets.versioned("javascripts/startseite.js")"></script>
 		<script src="@routes.Assets.versioned("javascripts/header.js")"></script>
+		<script src="@routes.Assets.versioned("javascripts/kontakt.js")"></script>
+		
 	</head>
 	<body>
+	<h1 style="font-size:0em;">Praktikum Praktika Student Universität Hochschule Fachhochschule</h1>
 		<div id="background">
 
 		</div>
@@ -191,30 +194,35 @@
 						<br></h4></i>
 					</p>
 					
-					<form action="message.php">
-						<div class"container">
+				
+						<div id="kontaktDiv" ng-controller="kontaktCtrl" >
 							<div class="adresse">
 								<label for="absender">E-Mail:</label>
-  								<input type="text" id="absender" name="absender"/>
+  								<input type="text" id="absender" name="absender" ng-model="kontaktEmail"/>
 							</div>
 						
 							<div class="betreff">
 								<label for="betreff">Betreff:</label>
-  								<input type="text" id="betreff" name="betreff"/>
+  								<input type="text" id="betreff" name="betreff" ng-model="kontaktBetreff"/>
 							</div>
 						
 							<div class="nachricht">
 								<label for="nachricht">Ihre Nachricht:</label>
-  								<textarea name="nachricht" cols="40" rows="5"> </textarea> 
+  								<textarea name="nachricht" cols="40" rows="5" ng-model="kontaktNachricht"> </textarea> 
 							</div>
 							<div>
-  								<input type="submit" value="Abschicken" />
+  								<input type="button" value="Abschicken" ng-click="ngAbschicken()" />
+							</div>
+							<div>
+								{{nachrichtFehler}}
 							</div>
 						</div>
-					</form>	
+					
 				</div>
 			</div>
 			<div class="footer">
+			<a href="https://www.facebook.com/StaJPraktikumsportal/" style="margin-left: 3%;"><i class="fa fa-facebook-square fa-3x"></i></a>
+			<a href="https://twitter.com/StajPraktikum" style="margin-left: 1%;"><i class="fa fa-twitter-square fa-3x"></i></a>
 		<footer>
 			<a a href="/agb" class="menupunkte">AGB </a><a a href="/impressum" class="menupunkte"> Impressum</a>
 		 </footer>
