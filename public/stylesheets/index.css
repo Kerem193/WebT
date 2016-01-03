@@ -39,17 +39,20 @@
 	background-size: cover;
 	opacity: 0.5;
 	filter: alpha(opacity=50);
+	margin-top: -3%;
 }
 
 #navigation-bar {
 	background-color: #444;
 	margin-bottom: -1px;
+	margin-top: -2.5%;
 }
 
 #navigation {
 	height: 65px;
 	max-height: 65px;
 }
+
 
 #navigation-titel {
 	margin-top: 1%;
@@ -233,8 +236,8 @@ a.dropdown-toggle {
 	background: #FFFFFF;
 	width: 100%;
 	height: 100%;
-	margin-top: 5%;
-	margin-bottom: 5%;
+	margin-top: 1%;
+	margin-bottom: 15%;
 	opacity: 0.7;
 	filter: alpha(opacity=90);
 	border-radius: 4px;
@@ -425,3 +428,29 @@ span.round-tab:hover {
 	width:80%;
 	height: 35px;
 }
+
+.footer{
+	position: fixed;
+	bottom: -15px;
+	width: 100%;
+	height: 60px;
+	background-color: #444;
+	
+}
+
+footer{
+	color: #FFFFFF;
+	float: right;
+	margin-right: 10%;
+	margin-top: 1%;
+}
+
+footer > a{
+	color: #FFFFFF;
+}
+
+
+
+
+
+

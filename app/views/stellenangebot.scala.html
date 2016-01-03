@@ -1,99 +1,94 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="Staj" content="">
-<title>Staj - Home</title>
-<link href="@routes.Assets.versioned("stylesheets/bootstrap.css")" rel="stylesheet" />
-<link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
-<link href="@routes.Assets.versioned("font-awesome/css/font-awesome.css")" rel="stylesheet" />
-<script src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
-<script src="@routes.Assets.versioned("javascripts/bootstrap.js")"></script>
-<link href="@routes.Assets.versioned("stylesheets/stellenangebot.css")" rel="stylesheet" />
-<link href="@routes.Assets.versioned("stylesheets/index.css")" rel="stylesheet" />
-<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-<script src="@routes.Assets.versioned("javascripts/angular.js")"></script>
-<script src="@routes.Assets.versioned("javascripts/startseite.js")"></script>
-<script src="@routes.Assets.versioned("javascripts/header.js")"></script>
-<script src="@routes.Assets.versioned("javascripts/suche.js")"></script>
-</head>
-<body>
-	<div id="background"></div>
-	<div class="navbar navbar-default" role="navigation"
-		id="navigation-bar" ng-app="header">
-		<div class="container-fluid" id="navigation">
-			<div class="navbar-header" id="navigation-titel">
-				<a class="navbar-brand titel" href="#" id="titel">StaJ </a>
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-menubuilder">
-					<span class="sr-only">Toggle navigation</span><span
-						class="icon-bar"></span><span class="icon-bar"></span><span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse navbar-menubuilder"
-				id="navigation-menupunkte">
-				<ul class="nav navbar-nav navbar-left">
-					<li><a href="/startseite" class="menupunkte">Home</a></li>
-					<li class="active" class="list_menupunkt"><a href="/suche"
-						class="menupunkte">Suche</a></li>
-					<li><a href="/upload" class="menupunkte" id="upload">Praktikumupload</a>
-					</li>
-					<li><a href="/contact" class="menupunkte">Kontakt</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right" ng-controller="loginCtrl">
-					<li class="dropdown" id="logindorpdown"><a href="#"
-						class="dropdown-toggle menupunkte" data-toggle="dropdown"
-						id="login">Login<span class="caret"></span></a>
-						<ul id="login-dp" class="dropdown-menu">
-							<li>
-								<div class="row">
-									<div class="col-md-12">
-										<form class="form" role="form" accept-charset="UTF-8"
-											id="login-nav">
-											<div class="form-group">
-												<label class="sr-only">E-Mail</label> <input type="email"
-													ng-model="email" class="form-control" id="inputEmail"
-													placeholder="E-Mail " required>
-											</div>
-											<div class="form-group">
-												<label class="sr-only" for="exampleInputPassword2">Passwort</label>
-												<input type="password" class="form-control"
-													ng-model="passwort" id="inputPasswort"
-													placeholder="Passwort" required>
-											</div>
-											<div class="form-group">
-												<button type="submit" class="btn btn-primary btn-block"
-													ng-click="anmelden()">Anmelden</button>
-											</div>
-											<div class="fehlermeldung" ng-model="fehler">{{fehler}}</div>
-										</form>
-									</div>
-									<div class="bottom text-center">
-										<a href="#" data-toggle="modal"
-											data-target="#modal_registrierung"><b>Jetzt kostenlos
-												registrieren</b></a>
-									</div>
-								</div>
-							</li>
-						</ul>
-						<ul id="eingeloggt" class="dropdown-menu">
-							<li>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="bottom text-center">
-											<a href="/profil">Zu Eurem Profil</a>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Staj" content="">
+		<title>Staj - Home</title>
+		<link href="@routes.Assets.versioned("stylesheets/bootstrap.css")" rel="stylesheet" />
+		<link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
+		<link href="@routes.Assets.versioned("font-awesome/css/font-awesome.css")" rel="stylesheet" />
+		<script src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
+		<script src="@routes.Assets.versioned("javascripts/bootstrap.js")"></script>
+		<link href="@routes.Assets.versioned("stylesheets/stellenangebot.css")" rel="stylesheet" />
+		<link href="@routes.Assets.versioned("stylesheets/index.css")" rel="stylesheet" />
+		<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+		<script src="@routes.Assets.versioned("javascripts/angular.js")"></script>
+		<script src="@routes.Assets.versioned("javascripts/startseite.js")"></script>
+		<script src="@routes.Assets.versioned("javascripts/header.js")"></script>
+	</head>
+	<body>
+	<h1 style="font-size:0em;">Praktikum Praktika Student Universität Hochschule Fachhochschule</h1>
+		<div id="background">
+
+		</div>
+		<div class="navbar navbar-default" role="navigation" id="navigation-bar" ng-app="header">
+			<div class="container-fluid" id="navigation">
+				<div class="navbar-header" id="navigation-titel">
+					<a class="navbar-brand titel" href="#" id="titel">StaJ </a>
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
+						<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="collapse navbar-collapse navbar-menubuilder" id="navigation-menupunkte">
+					<ul class="nav navbar-nav navbar-left">
+						<li>
+							<a href="/startseite" class="menupunkte">Home</a>
+						</li>
+						<li class="active" class="list_menupunkt">
+							<a href="/suche" class="menupunkte">Suche</a>
+						</li>
+						<li>
+							<a href="/upload" class="menupunkte" id="upload">Praktikumupload</a>
+						</li>
+						<li>
+							<a href="/contact" class="menupunkte">Kontakt</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right" ng-controller="loginCtrl">
+						<li class="dropdown" id="logindorpdown">
+							<a href="#" class="dropdown-toggle menupunkte" data-toggle="dropdown" id="login">Login<span class="caret"></span></a>
+							<ul id="login-dp" class="dropdown-menu">
+								<li>
+									<div class="row">
+										<div class="col-md-12">
+											<form class="form" role="form" accept-charset="UTF-8" id="login-nav">
+												<div class="form-group">
+													<label class="sr-only">E-Mail</label>
+													<input type="email" ng-model="email" class="form-control" id="inputEmail" placeholder="E-Mail " required>
+												</div>
+												<div class="form-group">
+													<label class="sr-only" for="exampleInputPassword2">Passwort</label>
+													<input type="password" class="form-control" ng-model="passwort" id="inputPasswort" placeholder="Passwort" required>
+												</div>
+												<div class="form-group">
+													<button type="submit" class="btn btn-primary btn-block" ng-click="anmelden()">
+														Anmelden
+													</button>
+												</div>
+												<div class="fehlermeldung" ng-model="fehler">{{fehler}}</div>
+											</form>
 										</div>
-										<input type="button" value="Ausloggen"
-											class="btn btn-primary btn-block" ng-click="logout()"
-											style="margin-bottom: 10px"></input>
+										<div class="bottom text-center">
+											<a href="#" data-toggle="modal" data-target="#modal_registrierung"><b>Jetzt kostenlos registrieren</b></a>
+										</div>
 									</div>
-								</div>
-							</li>
-						</ul></li>
-				</ul>
+								</li>
+							</ul>
+							<ul id="eingeloggt" class="dropdown-menu">
+								<li>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="bottom text-center"><a href="/profil">Zu Eurem Profil</a></div>
+											<input type="button" value="Ausloggen" class="btn btn-primary btn-block" ng-click="logout()" style="margin-bottom:10px"></input>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -230,6 +225,16 @@
 
 		</div>
 	</div>
+	<div class="footer">
+		
+			<a href="https://www.facebook.com/StaJPraktikumsportal/" style="margin-left: 3%;"><i class="fa fa-facebook-square fa-3x"></i></a>
+			<a href="https://twitter.com/StajPraktikum" style="margin-left: 1%;"><i class="fa fa-twitter-square fa-3x"></i></a>
+		
+		<footer>
+			<a a href="/agb" class="menupunkte">AGB </a><a a href="/impressum" class="menupunkte"> Impressum</a>
+		 </footer>
+		</div>
+		<div class="col-md-1"></div>
 	</div>
 	<div class="modal fade" id="modal_registrierung" ng-app="registr"
 		ng-controller="registrierungCtrl">
