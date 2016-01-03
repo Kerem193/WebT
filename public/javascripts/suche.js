@@ -14,18 +14,19 @@ suche.controller('suchenCtrl', function($scope,$http,$filter) {
 		var wasInput = $scope.wasinput;
 		var datumInput = $filter('date')($scope.datuminput, "yyyy-MM-dd");
 		var plzInput = $scope.plzinput;
-		
 		$http({
 			  method: 'GET',
 			  url: host + "/sucheStellen?bundesland=" + bundesland + 
 				"&studiengang=" + studiengang + 
 				"&dauer="+ dauer + 
-				"&was=" + wasInput+ 
-				"&wo=" + plzInput+ 
+				"&was=" + wasInput + 
+				"&wo=" + plzInput + 
 				"&wann=" + datumInput
 			  
 			}).then(function(data) {
-			console.log(data.data);
+				localStorage.setItem("SearchResult", JSON.stringify(data.data));
+			
+				window.location = "/stellenangebot";
 		});
 	}
 	
