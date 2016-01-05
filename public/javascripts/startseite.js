@@ -2,14 +2,14 @@ var registr = angular.module('registr', []);
 
 var host = "http://" + window.location.host;
 
-console.log("Hat geklappt");
-
 registr.controller('registrierungCtrl', function($scope,$http) {
 	
 	var email;
 	var name;
 	var passwort;
-	var passwort2;
+	var passwortw;
+	
+	var myRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,10}/;
 	
 	$scope.ngWeiter = function() {
 		
@@ -17,6 +17,16 @@ registr.controller('registrierungCtrl', function($scope,$http) {
 		name = $scope.name;
 		
 	};
+	
+	$scope.sicherheitTesten = function() {
+		
+		var ergebnis = $scope.passwort.search(myRegExp);
+		
+		if(ergebnis !== -1) {
+			
+			console.log("aaaa");
+		}
+	}
 
 	$scope.ngWeiter2 = function() {
 		

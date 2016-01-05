@@ -8,6 +8,7 @@
 <title>Staj - Praktikumsportal </title>
 <meta name="description" content="Finde die passende Stelle für dein Praktikum oder erstelle schnell und einfach eine eigene Stellenanzeige. Das Praktikumsportal Staj bietet eine umfangreiche Suche nach der auf dich zugeschnittenen Stelle. Ob Student oder Schüler, Staj findet das richtige Praktikum." />
 <meta name="keyword" content="Praktika, Praktikum, Praktikumsportal, Praxissemester, Stellenangebote, Stellenanzeigen, Stellenbörse, Praktikumsanzeigen, Praktikumsangebote, Studium, Student, Schüler, Schülerpraktikum, Berufsleben, Job, Suche, schnell, passend, einfach, Jobsuche, Praktikumssuche, Praxisjahr, Unternehmen" />
+<meta name="robots" content="all">
 <title>Staj - Home</title>
 <link href="@routes.Assets.versioned("stylesheets/bootstrap.css")" rel="stylesheet" />
 <link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
@@ -238,12 +239,15 @@
 												<p>
 													<input type="password" placeholder="Passwort"
 														class="wizard_formular input1" id="passwort"
-														ng-model="passwort" />
+														ng-model="passwort" ng-keyup="sicherheitTesten()"/>
 												</p>
 												<p>
 													<input type="password" placeholder="Passwort wiederholen"
 														class="wizard_formular input2" id="passwortw"
 														ng-model="passwortw" />
+												</p>
+												<p class="fehlermeldung">
+													{{fehler}}
 												</p>
 												<ul class="list-inline pull-right">
 													<li>
@@ -329,4 +333,54 @@
 		}
 	}
 </script>
+<noscript>
+$(document).ready(function() {
+		//Initialize tooltips
+		$('.nav-tabs > li a[title]').tooltip();
+
+		//Wizard
+		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+
+			var $target = $(e.target);
+
+			if ($target.parent().hasClass('disabled')) {
+				return false;
+			}
+		});
+
+		$(".prev-step").click(function(e) {
+
+			var $active = $('.wizard .nav-tabs li.active');
+			prevTab($active);
+
+		});
+	});
+
+	function nextTab(elem) {
+		$(elem).next().find('a[data-toggle="tab"]').click();
+	}
+
+	function prevTab(elem) {
+		$(elem).prev().find('a[data-toggle="tab"]').click();
+	}
+
+	function weiter(step) {
+		if (step == "step1") {
+			if ($('#email').val() != "" && $('#uname').val() != "") {
+				var $active = $('.wizard .nav-tabs li.active');
+				$active.next().removeClass('disabled');
+				nextTab($active);
+			}
+		} else {
+			if (step == "step2") {
+				if ($('#passwort').val() != "" && $('#passwortw').val() != "") {
+					var $active = $('.wizard .nav-tabs li.active');
+					$active.next().removeClass('disabled');
+					nextTab($active);
+				}
+			}
+		}
+	}
+
+</noscript>
 </html>
