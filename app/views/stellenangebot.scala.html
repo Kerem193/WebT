@@ -91,390 +91,401 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<!-- Navigation - Ende----------------------------------------------------------------------------------------------------------------------------------- -->
-		<div id="searchdiv">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-md-offset-8">
-						<form action="" class="search-form">
-							<div class="form-group has-feedback">
-								<label for="search" class="sr-only">Search</label>
-								<input type="text" class="form-control" name="search" id="search" placeholder="Stichwortsuche">
-								<span class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
-						</form>
+	<!-- Navigation - Ende----------------------------------------------------------------------------------------------------------------------------------- -->
+	<div id="searchdiv">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-8">
+					<form action="" class="search-form">
+						<div class="form-group has-feedback">
+							<label for="search" class="sr-only">Search</label> <input
+								type="text" class="form-control" name="search" id="search"
+								placeholder="Stichwortsuche"> <span
+								class="glyphicon glyphicon-search form-control-feedback"></span>
+						</div>
+					</form>
 
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="mainbody">
+
+		<div id="openfilter">
+			<button type="button" onclick="filteroeffnen()"
+				class="btn btn-default glyphicon glyphicon-chevron-right"
+				id="filteropenbutton"></button>
+		</div>
+		<div class="col-md-2" id="filterdiv">
+			<div style="text-align: center; padding-top: 15px;">
+				<h4>Filter</h4>
+			</div>
+			<div class="filterpanel" style="padding-bottom: 15px;">
+				<div class="panel panel-primary">
+					<div class="panel-heading clickable">
+						<h3 class="panel-title">Was</h3>
+						<span class="pull-right "><i
+							class="glyphicon glyphicon-minus"></i></span>
+					</div>
+					<div class="panel-body">
+						<div
+							style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
+							<p>
+								<input type="text" placeholder="Nach was suchen Sie?"
+									id="wasinputangebot" />
+							</p>
+							<p>
+								<select id="selectstudiangebot">
+									<option value="">Studiengang</option>
+									<option value="inf">Informatik</option>
+									<option value="bwl">BWL</option>
+								</select>
+							</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="filterpanel" style="padding-bottom: 15px;">
+				<div class="panel panel-primary">
+					<div class="panel-heading clickable">
+						<h3 class="panel-title">Wo</h3>
+						<span class="pull-right "><i
+							class="glyphicon glyphicon-minus"></i></span>
+					</div>
+					<div class="panel-body">
+						<div
+							style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
+							<p>
+								<input type="text" placeholder="Stadt/PLZ" id="stadtangebot" />
+							</p>
+							<p>
+								<select id="bundeslandangebot">
+									<option value="">Bundesland</option>
+									<option value="inf">Bayern</option>
+									<option value="bwl">Ba-Wü</option>
+								</select>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="filterpanel" style="padding-bottom: 15px;">
+				<div class="panel panel-primary">
+					<div class="panel-heading clickable">
+						<h3 class="panel-title">Wann</h3>
+						<span class="pull-right "><i
+							class="glyphicon glyphicon-minus"></i></span>
+					</div>
+					<div class="panel-body">
+						<div
+							style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
+							<p>
+								<input type="date" id="datumangebot" />
+							</p>
+							<p>
+								<select id="selectdauerangebot">
+									<option value="">Monate</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-10 col-md-offset-1 maindiv" id="maindiv">
+			<div class="maintextdiv" style="padding-top: 2%;">
+				<h3 style="margin-bottom: 3%; top: 2%;">Stellenangebot</h3>
+				<div style="text-align: right;">
+					<a href="/suche"><i class="fa fa-chevron-circle-left"></i>
+						zurück zur Suche</a>
+				</div>
+				<div id="list-body" style="max-height: 500px; overflow-y: scroll;"
+					ng-app="list-content" ng-controller="list-controller">
+					<div class="listing listing-default"
+						ng-repeat="item in items track by $index">
+						<div class="listing-content">
+							<h3 class="lead">{{item.titel}}</h3>
+							<p>{{item.beschreibung}}</p>
+						</div>
+						<div class="listingfooter">
+							<button class="btn btn-primary details" data-toggle="modal"
+								data-target="#detailsmodal">Details</button>
+						</div>
 					</div>
 				</div>
 			</div>
 
 		</div>
-		<div class="mainbody">
-			
-			<div id="openfilter">
-				<button type="button" onclick="filteroeffnen()" class="btn btn-default glyphicon glyphicon-chevron-right" id="filteropenbutton"></button>
-			</div>
-			<div class="col-md-2" id="filterdiv">
-				<div style="text-align: center; padding-top:15px;">
-					<h4>Filter</h4>
-				</div>
-				<div class="filterpanel" style="padding-bottom: 15px;">
-					<div class="panel panel-primary">
-						<div class="panel-heading clickable">
-							<h3 class="panel-title"> Was</h3>
-							<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
-						</div>
-						<div class="panel-body">
-							<div style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
-								<p>
-									<input type="text" placeholder="Nach was suchen Sie?" id="wasinputangebot" />
-								</p>
-								<p>
-									<select id="selectstudiangebot">
-										<option value="">Studiengang</option>
-										<option value="inf">Informatik</option>
-										<option value="bwl">BWL</option>
-									</select>
-								</p>
-
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="filterpanel" style="padding-bottom: 15px;">
-					<div class="panel panel-primary">
-						<div class="panel-heading clickable">
-							<h3 class="panel-title"> Wo</h3>
-							<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
-						</div>
-						<div class="panel-body">
-							<div style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
-								<p>
-									<input type="text" placeholder="Stadt/PLZ" id="stadtangebot" />
-								</p>
-								<p>
-									<select id="bundeslandangebot">
-										<option value="">Bundesland</option>
-										<option value="inf">Bayern</option>
-										<option value="bwl">Ba-Wü</option>
-									</select>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="filterpanel" style="padding-bottom: 15px;">
-					<div class="panel panel-primary">
-						<div class="panel-heading clickable">
-							<h3 class="panel-title"> Wann</h3>
-							<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
-						</div>
-						<div class="panel-body">
-							<div style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
-								<p>
-									<input type="date" id="datumangebot" />
-								</p>
-								<p>
-									<select id="selectdauerangebot">
-										<option value="">Monate</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-									</select>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-10 col-md-offset-1 maindiv" id="maindiv">
-				<div class="maintextdiv" style="padding-top: 2%;">
-					<h3 style="margin-bottom: 3%; top: 2%;">Stellenangebot</h3>
-					<div style="text-align: right;">
-				<a href="/suche"><i class="fa fa-chevron-circle-left"></i> zurück zur Suche</a>
-			</div>
-					<div style="max-height:500px; overflow-y: scroll;">
-						<div class="listing listing-default">
-							<div class="listing-content">
-								<h3 class="lead">Praktikum im Bereich SAP Berater</h3>
-								<p>
-									Hier stehen die Infos die du brauchst Kerem
-								</p>
-							</div>
-							<div class="listingfooter">
-								<button class="btn btn-primary details" data-toggle="modal" data-target="#detailsmodal">
-									Details
-								</button>
-							</div>
-						</div>
-
-						<div class="listing listing-default">
-							<div class="listing-content">
-								<h3 class="lead">Praktikum im Bereich Softwareentwicklung</h3>
-								<p>
-									Hier stehen die Infos die du brauchst Kerem
-								</p>
-							</div>
-							<div class="listingfooter">
-								<button class="btn btn-primary details" data-toggle="modal" data-target="#detailsmodal">
-									Details
-								</button>
-							</div>
-						</div>
-
-						<div class="listing listing-default">
-							<div class="listing-content">
-								<h3 class="lead">Praktikum im Bereich Softwareentwicklung</h3>
-								<p>
-									Hier stehen die Infos die du brauchst Kerem
-								</p>
-							</div>
-							<div class="listingfooter">
-								<button class="btn btn-primary details" data-toggle="modal" data-target="#detailsmodal">
-									Details
-								</button>
-							</div>
-						</div>
-
-						<div class="listing listing-default">
-							<div class="listing-content">
-								<h3 class="lead">Praktikum im Bereich Softwareentwicklung</h3>
-								<p>
-									Hier stehen die Infos die du brauchst Kerem
-								</p>
-							</div>
-							<div class="listingfooter">
-								<button class="btn btn-primary details" data-toggle="modal" data-target="#detailsmodal">
-									Details
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer">
-				<a href="https://www.facebook.com/StaJPraktikumsportal/" style="margin-left: 3%;"><i class="fa fa-facebook-square fa-3x"></i></a>
+	</div>
+	<div class="footer">
+		
+			<a href="https://www.facebook.com/StaJPraktikumsportal/" style="margin-left: 3%;"><i class="fa fa-facebook-square fa-3x"></i></a>
 			<a href="https://twitter.com/StajPraktikum" style="margin-left: 1%;"><i class="fa fa-twitter-square fa-3x"></i></a>
+		
 		<footer>
 			<a a href="/agb" class="menupunkte">AGB </a><a a href="/impressum" class="menupunkte"> Impressum</a>
 		 </footer>
 		</div>
-			</div>
-		</div>
-		<div class="modal fade" id="modal_registrierung" ng-app="registr" ng-controller="registrierungCtrl">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">Registrieren</h4>
-					</div>
-					<div class="modal-body">
-						<div class="container">
-							<div class="row" id="wizard">
-								<section id="section_wizard">
-									<div class="wizard">
-										<div class="wizard-inner">
-											<div class="connecting-line"></div>
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active">
-													<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="E-Mail & Name"> <span class="round-tab"> <i class="glyphicon glyphicon-user"></i> </span> </a>
-												</li>
-												<li role="presentation" class="disabled">
-													<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Passwort"> <span class="round-tab"> <i class="glyphicon glyphicon-lock"></i> </span> </a>
-												</li>
-												<li role="presentation" class="disabled">
-													<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Fertig"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a>
-												</li>
-											</ul>
-										</div>
-										<form role="form">
-											<div class="tab-content">
-												<div class="tab-pane active" role="tabpanel" id="step1">
-													<h4>E-Mail & Unternehmensname</h4>
-													<p>
-														<input type="email" placeholder="E-Mail" class="wizard_formular input1" id="email" ng-model="email"/>
-													</p>
-													<p>
-														<input type="text" placeholder="Name des Unternehmens" class="wizard_formular input2" id="uname" ng-model="name"/>
-													</p>
-													<ul class="list-inline pull-right">
-														<li>
-															<button ng-click="ngWeiter()" type="button" class="btn btn-success next-step" id="buttonstep1" onclick="weiter('step1')">
-																Weiter
-															</button>
-														</li>
-													</ul>
-												</div>
-												<div class="tab-pane" role="tabpanel" id="step2">
-													<h4>Passwort</h4>
-													<p>
-														<input type="password" placeholder="Passwort" class="wizard_formular input1"  id="passwort" ng-model="passwort"/>
-													</p>
-													<p>
-														<input type="password" placeholder="Passwort wiederholen" class="wizard_formular input2" id="passwortw" ng-model="passwortw"/>
-													</p>
-													<ul class="list-inline pull-right">
-														<li>
-															<button type="button" class="btn btn-default prev-step">
-																Zurück
-															</button>
-														</li>
-														<li>
-															<button type="button" class="btn btn-success next-step" onclick="weiter('step2')" ng-click="ngWeiter2()"id="buttonstep2">
-																Weiter
-															</button>
-														</li>
-													</ul>
-												</div>
-												<div class="tab-pane" role="tabpanel" id="complete">
-													<h4>Fertig</h4>
-													<p ng-model="meldung">
-														{{meldung}}
-													</p>
-												</div>
-												<div class="clearfix"></div>
-											</div>
-										</form>
+		<div class="col-md-1"></div>
+	</div>
+	<div class="modal fade" id="modal_registrierung" ng-app="registr"
+		ng-controller="registrierungCtrl">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Registrieren</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row" id="wizard">
+							<section id="section_wizard">
+								<div class="wizard">
+									<div class="wizard-inner">
+										<div class="connecting-line"></div>
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active"><a href="#step1"
+												data-toggle="tab" aria-controls="step1" role="tab"
+												title="E-Mail & Name"> <span class="round-tab"> <i
+														class="glyphicon glyphicon-user"></i>
+												</span>
+											</a></li>
+											<li role="presentation" class="disabled"><a
+												href="#step2" data-toggle="tab" aria-controls="step2"
+												role="tab" title="Passwort"> <span class="round-tab">
+														<i class="glyphicon glyphicon-lock"></i>
+												</span>
+											</a></li>
+											<li role="presentation" class="disabled"><a
+												href="#complete" data-toggle="tab" aria-controls="complete"
+												role="tab" title="Fertig"> <span class="round-tab">
+														<i class="glyphicon glyphicon-ok"></i>
+												</span>
+											</a></li>
+										</ul>
 									</div>
-								</section>
-							</div>
+									<form role="form">
+										<div class="tab-content">
+											<div class="tab-pane active" role="tabpanel" id="step1">
+												<h4>E-Mail & Unternehmensname</h4>
+												<p>
+													<input type="email" placeholder="E-Mail"
+														class="wizard_formular input1" id="email" ng-model="email" />
+												</p>
+												<p>
+													<input type="text" placeholder="Name des Unternehmens"
+														class="wizard_formular input2" id="uname" ng-model="name" />
+												</p>
+												<ul class="list-inline pull-right">
+													<li>
+														<button ng-click="ngWeiter()" type="button"
+															class="btn btn-success next-step" id="buttonstep1"
+															onclick="weiter('step1')">Weiter</button>
+													</li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step2">
+												<h4>Passwort</h4>
+												<p>
+													<input type="password" placeholder="Passwort"
+														class="wizard_formular input1" id="passwort"
+														ng-model="passwort" />
+												</p>
+												<p>
+													<input type="password" placeholder="Passwort wiederholen"
+														class="wizard_formular input2" id="passwortw"
+														ng-model="passwortw" />
+												</p>
+												<ul class="list-inline pull-right">
+													<li>
+														<button type="button" class="btn btn-default prev-step">
+															Zurück</button>
+													</li>
+													<li>
+														<button type="button" class="btn btn-success next-step"
+															onclick="weiter('step2')" ng-click="ngWeiter2()"
+															id="buttonstep2">Weiter</button>
+													</li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="complete">
+												<h4>Fertig</h4>
+												<p ng-model="meldung">{{meldung}}</p>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</form>
+								</div>
+							</section>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ngRedirect()">
-							Schließen
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						ng-click="ngRedirect()">Schließen</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
-		<div class="modal fade" id="detailsmodal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">Registrieren</h4>
-					</div>
-					<div class="modal-body">
+	<div class="modal fade" id="detailsmodal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Registrieren</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Schlieißen</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</body>
+<script>
+	var listContent = angular.module('list-content', []);
+	listContent.controller('list-controller', function($scope, $http) {
+		var result = localStorage.getItem("SearchResult");
+		$scope.items = JSON.parse(result);
+		console.log($scope.items);
+	});
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">
-							Schlieißen
-						</button>
-					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-	</body>
-	<script>
-		$(document).ready(function() {
-			/*$(".btn-pref .btn").click(function() {
-			 $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-			 // $(".tab").addClass("active"); // instead of this do the below
-			 $(this).removeClass("btn-default").addClass("btn-primary");
+	$(document).ready(function() {
+		/*$(".btn-pref .btn").click(function() {
+		 $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+		 // $(".tab").addClass("active"); // instead of this do the below
+		 $(this).removeClass("btn-default").addClass("btn-primary");
 
-			 });*/
+		 });*/
 
-			$("#filterdiv").hide();
+		$("#filterdiv").hide();
 
-			$('.nav-tabs > li a[title]').tooltip();
+		$('.nav-tabs > li a[title]').tooltip();
 
-			//Wizard
-			$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+		//Wizard
+		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
 
-				var $target = $(e.target);
+			var $target = $(e.target);
 
-				if ($target.parent().hasClass('disabled')) {
-					return false;
-				}
-			});
+			if ($target.parent().hasClass('disabled')) {
+				return false;
+			}
+		});
 
-			$(".prev-step").click(function(e) {
+		$(".prev-step").click(function(e) {
 
-				var $active = $('.wizard .nav-tabs li.active');
-				prevTab($active);
-
-			});
+			var $active = $('.wizard .nav-tabs li.active');
+			prevTab($active);
 
 		});
 
-		function nextTab(elem) {
-			$(elem).next().find('a[data-toggle="tab"]').click();
-		}
+	});
 
-		function prevTab(elem) {
-			$(elem).prev().find('a[data-toggle="tab"]').click();
-		}
+	function nextTab(elem) {
+		$(elem).next().find('a[data-toggle="tab"]').click();
+	}
 
-		function weiter(step) {
-			if (step == "step1") {
-				if ($('#email').val() != "" && $('#uname').val() != "") {
+	function prevTab(elem) {
+		$(elem).prev().find('a[data-toggle="tab"]').click();
+	}
+
+	function weiter(step) {
+		if (step == "step1") {
+			if ($('#email').val() != "" && $('#uname').val() != "") {
+				var $active = $('.wizard .nav-tabs li.active');
+				$active.next().removeClass('disabled');
+				nextTab($active);
+			}
+		} else {
+			if (step == "step2") {
+				if ($('#passwort').val() != "" && $('#passwortw').val() != "") {
 					var $active = $('.wizard .nav-tabs li.active');
 					$active.next().removeClass('disabled');
 					nextTab($active);
 				}
-			} else {
-				if (step == "step2") {
-					if ($('#passwort').val() != "" && $('#passwortw').val() != "") {
-						var $active = $('.wizard .nav-tabs li.active');
-						$active.next().removeClass('disabled');
-						nextTab($active);
-					}
+			}
+		}
+	}
+
+	$(document).on(
+			'click',
+			'.panel-heading span.clickable',
+			function(e) {
+				var $this = $(this);
+				if (!$this.hasClass('panel-collapsed')) {
+					$this.parents('.panel').find('.panel-body').slideUp();
+					$this.addClass('panel-collapsed');
+					$this.find('i').removeClass('glyphicon-minus').addClass(
+							'glyphicon-plus');
+				} else {
+					$this.parents('.panel').find('.panel-body').slideDown();
+					$this.removeClass('panel-collapsed');
+					$this.find('i').removeClass('glyphicon-plus').addClass(
+							'glyphicon-minus');
 				}
-			}
+			});
+	$(document).on(
+			'click',
+			'.panel div.clickable',
+			function(e) {
+				var $this = $(this);
+				if (!$this.hasClass('panel-collapsed')) {
+					$this.parents('.panel').find('.panel-body').slideUp();
+					$this.addClass('panel-collapsed');
+					$this.find('i').removeClass('glyphicon-minus').addClass(
+							'glyphicon-plus');
+				} else {
+					$this.parents('.panel').find('.panel-body').slideDown();
+					$this.removeClass('panel-collapsed');
+					$this.find('i').removeClass('glyphicon-plus').addClass(
+							'glyphicon-minus');
+				}
+			});
+	$(document).ready(
+			function() {
+				angular.bootstrap(document.getElementById("list-body"),
+						[ 'list-content' ]);
+				$('.panel-heading span.clickable').click();
+				$('.panel div.clickable').click();
+			});
+
+	function filteroeffnen() {
+
+		if ($("#filteropenbutton").hasClass("glyphicon-chevron-right")) {
+			$("#filteropenbutton").removeClass("glyphicon-chevron-right")
+					.addClass("glyphicon-chevron-left");
+			$("#maindiv").removeClass("col-md-10").addClass("col-md-9 ");
+			$("#filterdiv").toggle("slide");
+		} else {
+
+			$("#filterdiv").toggle("slide");
+			$("#filteropenbutton").removeClass("glyphicon-chevron-left")
+					.addClass("glyphicon-chevron-right");
+			$("#maindiv").removeClass("col-md-9").addClass("col-md-10 ");
 		}
 
-
-		$(document).on('click', '.panel-heading span.clickable', function(e) {
-			var $this = $(this);
-			if (!$this.hasClass('panel-collapsed')) {
-				$this.parents('.panel').find('.panel-body').slideUp();
-				$this.addClass('panel-collapsed');
-				$this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-			} else {
-				$this.parents('.panel').find('.panel-body').slideDown();
-				$this.removeClass('panel-collapsed');
-				$this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-			}
-		});
-		$(document).on('click', '.panel div.clickable', function(e) {
-			var $this = $(this);
-			if (!$this.hasClass('panel-collapsed')) {
-				$this.parents('.panel').find('.panel-body').slideUp();
-				$this.addClass('panel-collapsed');
-				$this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
-			} else {
-				$this.parents('.panel').find('.panel-body').slideDown();
-				$this.removeClass('panel-collapsed');
-				$this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
-			}
-		});
-		$(document).ready(function() {
-			$('.panel-heading span.clickable').click();
-			$('.panel div.clickable').click();
-		});
-
-		function filteroeffnen() {
-
-			if ($("#filteropenbutton").hasClass("glyphicon-chevron-right")) {
-				$("#filteropenbutton").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-left");
-				$("#maindiv").removeClass("col-md-10").addClass("col-md-9 ");
-				$("#filterdiv").toggle("slide");
-			} else {
-
-				$("#filterdiv").toggle("slide");
-				$("#filteropenbutton").removeClass("glyphicon-chevron-left").addClass("glyphicon-chevron-right");
-				$("#maindiv").removeClass("col-md-9").addClass("col-md-10 ");
-			}
-
-		}
-
-	</script>
+	}
+</script>
 </html>

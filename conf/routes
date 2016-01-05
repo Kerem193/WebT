@@ -26,7 +26,7 @@ GET		/impressum					controllers.Application.impressum()
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-
+	
 # GETS
 
 GET		/eigeneStellen				controllers.Profil.eigenestellen()	
@@ -52,4 +52,5 @@ PUT		/passwortBearbeiten			controllers.Profil.passwortBearbeiten()
 DELETE	/stelleLoeschen/:id_pra		controllers.Profil.loeschen(id_pra:Integer)
 
 GET     /swaggerUi         	controllers.Assets.at(path = "/public/swaggerUi", file = "googleb7bd20474590acf5.html")
+GET     /*file              controllers.Assets.at(path = "/public/swaggerUi", file)
 GET     /*file              controllers.Assets.at(path = "/public/swaggerUi", file)

@@ -84,7 +84,7 @@ public class Suche {
 				sql += "stadt = ? ";
 				list.add(wo);
 			}
-			
+			System.out.println("SQL: " + sql);
 			ps = con.prepareStatement(sql);
 			
 			int i = 1;
@@ -111,7 +111,7 @@ public class Suche {
 				allResults.insert(index, result);
 				index++;
 			}
-			
+			System.out.println("RESULTS: " + allResults);
 			return allResults;
 		}
 		catch (ClassNotFoundException e) {

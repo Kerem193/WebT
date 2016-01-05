@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.Console;
 import java.util.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -17,12 +18,13 @@ import views.html.*;
 public class Suche extends Controller{
 	public Result suchen(){
 		
-		String studiengang = request().getQueryString("studiengang");
-		String dauerString = request().getQueryString("dauer");
-		String bundesland = request().getQueryString("bundesland");
-		String was = request().getQueryString("was");
-		String wann = request().getQueryString("wann");
-		String wo = request().getQueryString("wo");
+		String studiengang = request().getQueryString("studiengang"); 
+ 		String dauerString = request().getQueryString("dauer"); 
+ 		String bundesland = request().getQueryString("bundesland"); 
+ 		String was = request().getQueryString("was"); 
+ 		String wann = request().getQueryString("wann"); 
+ 		String wo = request().getQueryString("wo"); 
+
 		int dauer = 0;
 		try{
 			dauer = Integer.parseInt(dauerString);
@@ -70,6 +72,7 @@ public class Suche extends Controller{
 		}
 		
 		ArrayNode result = model.Model.getInstance().getSuche().suchen(bundesland, dauer, studiengang, was, wann, wo);
+		
 		return ok(result);
 	}
 }
