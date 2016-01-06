@@ -13,15 +13,25 @@ upload.controller('uploadCtrl', function($scope,$http) {
 	var datum;
 	var dauer;
 	
-	$(document).ready(function(){
+	//$(document).ready(function(){
 		
-		if(location.href === host+"/upload?erfolg") {
+		if(localStorage.getItem("uploadErfolg") === "erfolgreich") {
 			
 			$scope.uploadErfolg = "Die Stelle wurde erfolgreich hochgeladen.";
 			
-		}
+			localStorage.removeItem("uploadErfolg");
+			
+		} 
 		
-	});
+		if(localStorage.getItem("uploadErfolg") === "fehler") {
+			
+			$scope.uploadFehler = "Die Stelle konnte nicht hochgeladen werden.";
+			
+			localStorage.removeItem("uploadErfolg");
+			
+		} 
+		
+	//});
 
 	
 	$scope.ngWeiter1 = function() {
@@ -70,11 +80,20 @@ upload.controller('uploadCtrl', function($scope,$http) {
 			
 			if(data.data.status === "ok") {
 				
-				location.href = location.href + "?erfolg";
+				localStorage.setItem("uploadErfolg", "erfolgreich");
+				
+				location.reload();
 
-				console.log(data);
-			}
+			} 
 					
+		}).catch(function(e) {
+			
+			console.log("Fehler");
+			
+			localStorage.setItem("uploadErfolg", "fehler");
+			
+			location.reload();
+			
 		});
 	}
 		

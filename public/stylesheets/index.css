@@ -16,6 +16,16 @@
 	
 }
 
+.clientOk {
+	
+	background-color:  #33CC00;
+	color: white;
+	font-style: verdana;
+	opacity: 0.7;
+	margin: 5px;
+	
+}
+
 .modal-body p{
 	font-weight: bold;
 }

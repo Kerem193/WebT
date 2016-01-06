@@ -72,7 +72,7 @@
 												<button type="submit" class="btn btn-primary btn-block"
 													ng-click="anmelden()">Anmelden</button>
 											</div>
-											<div class="fehlermeldung" ng-model="fehler">{{fehler}}</div>
+											<div class="clientFehler" ng-model="fehler">{{fehler}}</div>
 										</form>
 									</div>
 									<div class="bottom text-center">
@@ -236,6 +236,7 @@
 											</div>
 											<div class="tab-pane" role="tabpanel" id="step2">
 												<h4>Passwort</h4>
+												<p>Mindestens 6 Zeichen. Mindestens 1 Großbuchstabe. Mindestens 1 Zahl.</p>
 												<p>
 													<input type="password" placeholder="Passwort"
 														class="wizard_formular input1" id="passwort"
@@ -246,9 +247,10 @@
 														class="wizard_formular input2" id="passwortw"
 														ng-model="passwortw" />
 												</p>
-												<p class="fehlermeldung">
+												<p class="clientFehler">
 													{{fehler}}
 												</p>
+												<p class="clientOk">{{ok}}</p>
 												<ul class="list-inline pull-right">
 													<li>
 														<button type="button" class="btn btn-default prev-step">

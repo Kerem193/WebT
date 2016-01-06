@@ -9,7 +9,7 @@ registr.controller('registrierungCtrl', function($scope,$http) {
 	var passwort;
 	var passwortw;
 	
-	var myRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,10}/;
+	var myRegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 	
 	$scope.ngWeiter = function() {
 		
@@ -18,13 +18,23 @@ registr.controller('registrierungCtrl', function($scope,$http) {
 		
 	};
 	
+	var sicherheit = false;
+	
 	$scope.sicherheitTesten = function() {
 		
-		var ergebnis = $scope.passwort.search(myRegExp);
+		var passw = $scope.passwort;
+		
+		var ergebnis = passw.search(myRegExp);
 		
 		if(ergebnis !== -1) {
+			$scope.fehler = "";
+			$scope.ok = "Passwort ist sicher";
+			sicherheit = true;
 			
-			console.log("aaaa");
+		} else {
+			$scope.fehler = "Passwort zu unsicher";
+			$scope.ok = "";
+			sicherheit = false;
 		}
 	}
 
@@ -35,7 +45,7 @@ registr.controller('registrierungCtrl', function($scope,$http) {
 		passwort = $scope.passwort;
 		passwortw = $scope.passwortw;
 		
-		if(passwort === passwortw) {
+		if(passwort === passwortw && sicherheit === true) {
 		
 		var daten = {};
 		daten["email"] = email;
@@ -53,6 +63,10 @@ registr.controller('registrierungCtrl', function($scope,$http) {
 						
 		});
 				
+		} else {
+			
+			weiter('step1');
+			
 		}
 		
 	}

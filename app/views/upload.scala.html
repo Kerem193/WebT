@@ -19,6 +19,7 @@
 		<script src="@routes.Assets.versioned("javascripts/upload.js")"></script>
 	</head>
 	<body>
+	<h1 style="font-size:0em;">Praktikum Praktika Student Universität Hochschule Fachhochschule</h1>
 		<div id="background">
 
 		</div>
@@ -112,8 +113,9 @@
 			<div class="col-md-10" class="maindiv">
 				<div class="maintextdiv" style="padding-top: 2%;">
 					<h3 style="margin-bottom: 3%; top: 2%;">Stellen-Upload</h3>
-					<h5 ng-model="uploadErfolg">{{uploadErfolg}}</h5>
 					<div id="maintabdiv" ng-controller="uploadCtrl">
+					<h5 class="clientOk">{{uploadErfolg}}</h5>
+					<h5 class="clientFehler">{{uploadFehler}}</h5>
 						<div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="" id="buttongurppe">
 							<div class="btn-group" role="group">
 								<button type="button" id="was" class="btn btn-primary" href="#tab1" data-toggle="tab">
