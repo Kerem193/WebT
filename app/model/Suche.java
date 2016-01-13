@@ -58,15 +58,15 @@ public class Suche {
 				needAnd = true;
 				list.add(studiengang);
 			}
-//			TODO: Datum abfragen
-//			if(wann != null && !wann.isEmpty()){
-//				if(needAnd){
-//					sql += "AND ";
-//				}
-//				sql += "datum = ? ";
-//				needAnd = true;
-//				list.add(wann);
-//			}
+
+			if(wann != null && !wann.isEmpty() && !wann.equals("undefined")){
+				if(needAnd){
+					sql += "AND ";
+				}
+				sql += "datum = ? ";
+				needAnd = true;
+				list.add(wann);
+			}
 			if(was != null && !was.isEmpty()){
 				if(needAnd){
 					sql += "AND ";
@@ -107,6 +107,22 @@ public class Suche {
 				result.put("studiengang", rs.getString("studiengang"));
 				result.put("dauer", rs.getString("dauer"));
 				result.put("datum", rs.getString("datum"));
+				
+				allResults.insert(index, result);
+				index++;
+			}
+			System.out.println("INDEX: " + index);
+			if(index == 0){
+				ObjectNode result = Json.newObject();
+				result.put("id_pra", "1");
+				result.put("titel", "Nichts gefunden");
+				result.put("beschreibung", "Versuchen Sie es später erneut oder ändern Sie die Suchkriterien.");
+				result.put("stadt", "");
+				result.put("bundesland", "");
+				result.put("link", "");
+				result.put("studiengang", "");
+				result.put("dauer", "");
+				result.put("datum", "");
 				
 				allResults.insert(index, result);
 				index++;

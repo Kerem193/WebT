@@ -119,7 +119,7 @@
 				class="btn btn-default glyphicon glyphicon-chevron-right"
 				id="filteropenbutton"></button>
 		</div>
-		<div class="col-md-2" id="filterdiv">
+		<div class="col-md-2" id="filterdiv" ng-app="filter-content" ng-controller="filter-controller">
 			<div style="text-align: center; padding-top: 15px;">
 				<h4>Filter</h4>
 			</div>
@@ -135,10 +135,10 @@
 							style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
 							<p>
 								<input type="text" placeholder="Nach was suchen Sie?"
-									id="wasinputangebot" />
+									id="wasinputangebot" ng-model="wasInput"/>
 							</p>
 							<p>
-								<select id="selectstudiangebot">
+								<select id="selectstudiangebot" ng-model="studiInput">
 									<option value="">Studiengang</option>
 									<option value="inf">Informatik</option>
 									<option value="bwl">BWL</option>
@@ -161,10 +161,10 @@
 						<div
 							style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
 							<p>
-								<input type="text" placeholder="Stadt/PLZ" id="stadtangebot" />
+								<input type="text" placeholder="Stadt/PLZ" id="stadtangebot"  ng-model="plzInput"/>
 							</p>
 							<p>
-								<select id="bundeslandangebot">
+								<select id="bundeslandangebot" ng-model="bundeslandInput">
 									<option value="">Bundesland</option>
 									<option value="inf">Bayern</option>
 									<option value="bwl">Ba-Wü</option>
@@ -186,10 +186,10 @@
 						<div
 							style="text-align: left; padding-left: 1%; padding-right: 1%; color: #111;">
 							<p>
-								<input type="date" id="datumangebot" />
+								<input type="date" id="datumangebot"  ng-model="datumInput"/>
 							</p>
 							<p>
-								<select id="selectdauerangebot">
+								<select id="selectdauerangebot" ng-model="dauerInput">
 									<option value="">Monate</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -199,6 +199,7 @@
 					</div>
 				</div>
 			</div>
+			<button class="btn btn-primary details" ng-click="ngRefresh()">Aktualisieren</button>
 		</div>
 		<div class="col-md-10 col-md-offset-1 maindiv" id="maindiv">
 			<div class="maintextdiv" style="padding-top: 2%;">
@@ -371,7 +372,34 @@
 		$scope.items = JSON.parse(result);
 		console.log($scope.items);
 	});
-
+	var filterContent = angular.module('filter-content', []);
+	var host = "http://" + window.location.host;
+	filterContent.controller('filter-controller', function ($scope, $http, $filter){
+		console.log("reg it!");
+		$scope.ngRefresh = function() {
+			console.log("drin!");
+			var bundesland = $scope.bundeslandInput;
+			var studiengang = $scope.studiInput;
+			var dauer = $scope.dauerInput;
+			var wasInput = $scope.wasInput;
+			var datumInput = $filter('date')($scope.datumInput, "yyyy-MM-dd");
+			var plzInput = $scope.plzInput;
+			console.log(bundesland,studiengang,dauer, wasInput, datumInput, plzInput);
+			$http({
+				  method: 'GET',
+				  url: host + "/sucheStellen?bundesland=" + bundesland + 
+					"&studiengang=" + studiengang + 
+					"&dauer="+ dauer + 
+					"&was=" + wasInput + 
+					"&wo=" + plzInput + 
+					"&wann=" + datumInput
+				  
+				}).then(function(data) {
+					localStorage.setItem("SearchResult", JSON.stringify(data.data));					
+					window.location = "/stellenangebot";
+			});
+		}
+	});
 	$(document).ready(function() {
 		/*$(".btn-pref .btn").click(function() {
 		 $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
@@ -467,6 +495,8 @@
 			function() {
 				angular.bootstrap(document.getElementById("list-body"),
 						[ 'list-content' ]);
+				angular.bootstrap(document.getElementById("filterdiv"),
+						[ 'filter-content' ]);
 				$('.panel-heading span.clickable').click();
 				$('.panel div.clickable').click();
 			});
@@ -487,5 +517,6 @@
 		}
 
 	}
+	
 </script>
 </html>
