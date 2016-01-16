@@ -2,6 +2,10 @@ var upload = angular.module('upload', []);
 
 var host = "http://" + window.location.host;
 
+var stadtGlobal;
+
+console.log("BLAAAAA");
+
 upload.controller('uploadCtrl', function($scope,$http) {
 		
 	var titel;
@@ -46,7 +50,8 @@ upload.controller('uploadCtrl', function($scope,$http) {
 	
 	$scope.ngWeiter2 = function() {
 		
-		stadt = $scope.stadt;
+		stadt = stadtGlobal;
+		console.log("Stadt: " + stadt);
 		bundesland = $("#bundesland").val();
 		
 	}

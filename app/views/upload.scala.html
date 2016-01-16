@@ -1,577 +1,761 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="Staj" content="">
-		<title>Staj - Upload</title>
-		<link href="@routes.Assets.versioned("stylesheets/bootstrap.css")" rel="stylesheet" />
-		<link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
-		<script src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
-		<script src="@routes.Assets.versioned("javascripts/bootstrap.js")"></script>
-		<link href="@routes.Assets.versioned("stylesheets/upload.css")" rel="stylesheet" />
-		<link href="@routes.Assets.versioned("stylesheets/index.css")" rel="stylesheet" />
-		<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-		<script src="@routes.Assets.versioned("javascripts/angular.js")"></script>
-		<script src="@routes.Assets.versioned("javascripts/startseite.js")"></script>
-		<script src="@routes.Assets.versioned("javascripts/header.js")"></script>
-		<script src="@routes.Assets.versioned("javascripts/upload.js")"></script>
-	</head>
-	<body>
-	<h1 style="font-size:0em;">Praktikum Praktika Student Universität Hochschule Fachhochschule</h1>
-		<div id="background">
-
-		</div>
-		<div class="navbar navbar-default" role="navigation" id="navigation-bar" ng-app="header">
-			<div class="container-fluid" id="navigation">
-				<div class="navbar-header" id="navigation-titel">
-					<a class="navbar-brand titel" href="#" id="titel">StaJ </a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menubuilder">
-						<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse navbar-menubuilder" id="navigation-menupunkte">
-					<ul class="nav navbar-nav navbar-left">
-						<li>
-							<a href="/startseite" class="menupunkte">Home</a>
-						</li>
-						<li>
-							<a href="/suche" class="menupunkte">Suche</a>
-						</li>
-						<li class="active" class="list_menupunkt">
-							<a href="/upload" class="menupunkte" id="upload">Praktikumupload</a>
-						</li>
-						<li>
-							<a href="/contact" class="menupunkte">Kontakt</a>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right" ng-controller="loginCtrl">
-						<li class="dropdown" id="logindorpdown">
-							<a href="#" class="dropdown-toggle menupunkte" data-toggle="dropdown" id="login">Login<span class="caret"></span></a>
-							<ul id="login-dp" class="dropdown-menu">
-								<li>
-									<div class="row">
-										<div class="col-md-12">
-											<form class="form" role="form" accept-charset="UTF-8" id="login-nav">
-												<div class="form-group">
-													<label class="sr-only">E-Mail</label>
-													<input type="email" ng-model="email" class="form-control" id="inputEmail" placeholder="E-Mail " required>
-												</div>
-												<div class="form-group">
-													<label class="sr-only" for="exampleInputPassword2">Passwort</label>
-													<input type="password" class="form-control" ng-model="passwort" id="inputPasswort" placeholder="Passwort" required>
-												</div>
-												<div class="form-group">
-													<button type="submit" class="btn btn-primary btn-block" ng-click="anmelden()">
-														Anmelden
-													</button>
-												</div>
-												<div class="fehlermeldung" ng-model="fehler">{{fehler}}</div>
-											</form>
-										</div>
-										<div class="bottom text-center">
-											<a href="#" data-toggle="modal" data-target="#modal_registrierung"><b>Jetzt kostenlos registrieren</b></a>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<ul id="eingeloggt" class="dropdown-menu">
-								<li>
-									<div class="row">
-										<div class="col-md-12">
-											<div class="bottom text-center"><a href="/profil">Zu Eurem Profil</a></div>
-											<input type="button" value="Ausloggen" ng-click="logout()" class="btn btn-primary btn-block" style="margin-bottom:10px"></input>
-										</div>
-									</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Staj" content="">
+<title>Staj - Upload</title>
+<link href="@routes.Assets.versioned("stylesheets/bootstrap.css")" rel="stylesheet" />
+<link href="@routes.Assets.versioned("font-awesome/css/font-awesome.min.css")" rel="stylesheet" />
+<script src="@routes.Assets.versioned("javascripts/jquery.js")"></script>
+<script src="@routes.Assets.versioned("javascripts/bootstrap.js")"></script>
+<link href="@routes.Assets.versioned("stylesheets/upload.css")" rel="stylesheet" />
+<link href="@routes.Assets.versioned("stylesheets/index.css")" rel="stylesheet" />
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+<script src="@routes.Assets.versioned("javascripts/angular.js")"></script>
+<script src="@routes.Assets.versioned("javascripts/startseite.js")"></script>
+<script src="@routes.Assets.versioned("javascripts/header.js")"></script>
+<script src="@routes.Assets.versioned("javascripts/upload.js")"></script>
+</head>
+<body>
+	<h1 style="font-size: 0em;">Praktikum Praktika Student Universität
+		Hochschule Fachhochschule</h1>
+	<div id="background"></div>
+	<div class="navbar navbar-default" role="navigation"
+		id="navigation-bar" ng-app="header">
+		<div class="container-fluid" id="navigation">
+			<div class="navbar-header" id="navigation-titel">
+				<a class="navbar-brand titel" href="#" id="titel">StaJ </a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-menubuilder">
+					<span class="sr-only">Toggle navigation</span><span
+						class="icon-bar"></span><span class="icon-bar"></span><span
+						class="icon-bar"></span>
+				</button>
 			</div>
-		</div>
-
-		<!-- Navigation - Ende----------------------------------------------------------------------------------------------------------------------------------- -->
-		<div id="searchdiv">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-md-offset-8">
-						<form action="" class="search-form">
-							<div class="form-group has-feedback">
-								<label for="search" class="sr-only">Search</label>
-								<input type="text" class="form-control" name="search" id="search" placeholder="Stichwortsuche">
-								<span class="glyphicon glyphicon-search form-control-feedback"></span>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="mainbody" id="uploadBody" ng-app="upload">
-			<div class="col-md-1"></div>
-			<div class="col-md-10" class="maindiv">
-				<div class="maintextdiv" style="padding-top: 2%;">
-					<h3 style="margin-bottom: 3%; top: 2%;">Stellen-Upload</h3>
-					<div id="maintabdiv" ng-controller="uploadCtrl">
-					<h5 class="clientOk">{{uploadErfolg}}</h5>
-					<h5 class="clientFehler">{{uploadFehler}}</h5>
-						<div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="" id="buttongurppe">
-							<div class="btn-group" role="group">
-								<button type="button" id="was" class="btn btn-primary" href="#tab1" data-toggle="tab">
-									<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-									<div class="hidden-xs">
-										Was?
-									</div>
-								</button>
-							</div>
-							<div class="btn-group" role="group">
-								<button type="button" id="wo" class="btn btn-default" href="#tab2" data-toggle="tab">
-									<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-									<div class="hidden-xs">
-										Wo?
-									</div>
-								</button>
-							</div>
-							<div class="btn-group" role="group">
-								<button type="button" id="wann" class="btn btn-default" href="#tab3" data-toggle="tab">
-									<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-									<div class="hidden-xs">
-										Wann?
-									</div>
-								</button>
-							</div>
-							<div class="btn-group" role="group">
-								<button type="button" id="fertig" class="btn btn-default" href="#tab4" data-toggle="tab">
-									<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-									<div class="hidden-xs">
-										Fertig
-									</div>
-								</button>
-							</div>
-						</div>
-
-						<div class="well">
-							<div class="tab-content">
-								<div class="tab-pane fade in active" id="tab1">
-									<div id="alerttab1" class="alert alert-danger" role="alert">Füllen Sie bitte <b>ALLE</b> Felder aus</div>
-									<p>
-										<input type="text" ng-model="titel" placeholder="Titel der Stelle" id="titelupload" />
-									</p>
-									<p>
-										<input type="text" ng-model="link" placeholder="Link zur Stellenbeschreibung (Homepage)" id="link" />
-									</p>
-									Studiengang
-									<p>
-										<select id="selectstudi2" multiple>
-											<option value="Informatik">Informatik</option>
-											<option value="BWL">BWL</option>
-											<option value="Maschinenbau">Maschinenbau</option>
-											
-										</select>
-									</p>
-									<p>
-										<textarea id="desc" ng-model="beschreibung" placeholder="Beschreibung der Stelle ... "></textarea>
-									</p>
-									<button id="wetiertab" ng-click="ngWeiter1()" onclick="weitertab('tab1')" class="speichernweiter btn btn-primary">
-										Speichern & Weiter
-									</button>
-								</div>
-								<div class="tab-pane fade in" id="tab2">
-									<div id="alerttab2" class="alert alert-danger" role="alert">Füllen Sie bitte <b>ALLE</b> Felder aus</div>
-									<p>
-										<input type="text" placeholder="Stadt/PLZ" id="stadt" ng-model="stadt"/>
-									</p>
-									<p>
-										<select id="bundesland">
-											<option value="">Bundesland</option>
-											<option value="Bayern">Bayern</option>
-											<option value="Baden-Württemberg">Ba-Wü</option>
-										</select>
-									</p>
-									<button id="wetiertab" onclick="zuruecktab('tab2')" class="speichernweiter btn btn-primary">
-										Zurück
-									</button>
-									<button id="wetiertab" onclick="weitertab('tab2')" ng-click="ngWeiter2()" class="speichernweiter btn btn-primary">
-										Speichern & Weiter
-									</button>
-								</div>
-								<div class="tab-pane fade in" id="tab3">
-									<div id="alerttab3" class="alert alert-danger" role="alert">Füllen Sie bitte <b>ALLE</b> Felder aus</div>
-									<p>
-										<input type="date" id="datum"/>
-									</p>
-									<p>
-										<select id="selectdauer2">
-											<option value="">Monate</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-										</select>
-									</p>
-
-									<button id="zuruecktab" onclick="zuruecktab('tab3')" class="speichernweiter btn btn-primary">
-										Zurück
-									</button>
-									<button id="wetiertab" onclick="weitertab('tab3')" ng-click="ngWeiter3()" class="speichernweiter btn btn-primary">
-										Speichern & Weiter
-									</button>
-								</div>
-								<div class="tab-pane fade in" id="tab4">
-									<table class="table table-bordered">
-										<tr><th>Titel</th><td><div id="titelfertig"></div></td></tr>
-										<tr><th>Studiengang</th><td><div id="studifertig"></div></td></tr>
-										<tr><th>Stadt</th><td><div id="stadtfertig"></div></td></tr>
-										<tr><th>Bundesland</th><td><div id="bundeslandfertig"></div></td></tr>
-										<tr><th>Praktikumsanfang</th><td><div id="anfangfertig"></div></td></tr>
-										<tr><th>Dauer</th><td><div id="dauerfertig"></div></td></tr>
-										<tr><th>Link zur Stellenbeschreibung</th><td><div id="linkfertig"></div></td></tr>
-										<tr><th>Beschreibung</th><td><div id="descfertig"></div></td></tr>
-										
-									</table>
-
-									<button id="wetiertab" onclick="zuruecktab('tab4')" class="speichernweiter btn btn-primary">
-										Zurück
-									</button>
-									<button id="wetiertab" ng-click="ngFertig()" class="speichernweiter btn btn-success ">
-										Upload
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer">
-		<footer>
-			<a a href="/agb" class="menupunkte">AGB </a><a a href="/impressum" class="menupunkte"> Impressum</a>
-		 </footer>
-		</div>
-			<div class="col-md-1"></div>
-		</div>
-		<div class="modal fade" id="modal_registrierung" ng-controller="registrierungCtrl" ng-app="registr">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title">Registrieren</h4>
-					</div>
-					<div class="modal-body">
-						<div class="container">
-							<div class="row" id="wizard">
-								<section id="section_wizard">
-									<div class="wizard">
-										<div class="wizard-inner">
-											<div class="connecting-line"></div>
-											<ul class="nav nav-tabs" role="tablist">
-												<li role="presentation" class="active">
-													<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="E-Mail & Name"> <span class="round-tab"> <i class="glyphicon glyphicon-user"></i> </span> </a>
-												</li>
-												<li role="presentation" class="disabled">
-													<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Passwort"> <span class="round-tab"> <i class="glyphicon glyphicon-lock"></i> </span> </a>
-												</li>
-												<li role="presentation" class="disabled">
-													<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Fertig"> <span class="round-tab"> <i class="glyphicon glyphicon-ok"></i> </span> </a>
-												</li>
-											</ul>
-										</div>
-										<form role="form">
-											<div class="tab-content">
-												<div class="tab-pane active" role="tabpanel" id="step1">
-													<h4>E-Mail & Unternehmensname</h4>
-													<p>
-														<input type="email" placeholder="E-Mail" class="wizard_formular input1" id="email" ng-model="email"/>
-													</p>
-													<p>
-														<input type="text" placeholder="Name des Unternehmens" class="wizard_formular input2" id="uname" ng-model="name"/>
-													</p>
-													<ul class="list-inline pull-right">
-														<li>
-															<button ng-click="ngWeiter()" type="button" class="btn btn-success next-step" id="buttonstep1" onclick="weiter('step1')">
-																Weiter
-															</button>
-														</li>
-													</ul>
-												</div>
-												<div class="tab-pane" role="tabpanel" id="step2">
-													<h4>Passwort</h4>
-													<p>
-														<input type="password" placeholder="Passwort" class="wizard_formular input1"  id="passwort" ng-model="passwort"/>
-													</p>
-													<p>
-														<input type="password" placeholder="Passwort wiederholen" class="wizard_formular input2" id="passwortw" ng-model="passwortw"/>
-													</p>
-													<ul class="list-inline pull-right">
-														<li>
-															<button type="button" class="btn btn-default prev-step">
-																Zurück
-															</button>
-														</li>
-														<li>
-															<button type="button" class="btn btn-success next-step" onclick="weiter('step2')" ng-click="ngWeiter2()"id="buttonstep2">
-																Weiter
-															</button>
-														</li>
-													</ul>
-												</div>
-												<div class="tab-pane" role="tabpanel" id="complete">
-													<h4>Fertig</h4>
-													<p ng-model="meldung">
-														{{meldung}}
-													</p>
-												</div>
-												<div class="clearfix"></div>
+			<div class="collapse navbar-collapse navbar-menubuilder"
+				id="navigation-menupunkte">
+				<ul class="nav navbar-nav navbar-left">
+					<li><a href="/startseite" class="menupunkte">Home</a></li>
+					<li><a href="/suche" class="menupunkte">Suche</a></li>
+					<li class="active" class="list_menupunkt"><a href="/upload"
+						class="menupunkte" id="upload">Praktikumupload</a></li>
+					<li><a href="/contact" class="menupunkte">Kontakt</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right" ng-controller="loginCtrl">
+					<li class="dropdown" id="logindorpdown"><a href="#"
+						class="dropdown-toggle menupunkte" data-toggle="dropdown"
+						id="login">Login<span class="caret"></span></a>
+						<ul id="login-dp" class="dropdown-menu">
+							<li>
+								<div class="row">
+									<div class="col-md-12">
+										<form class="form" role="form" accept-charset="UTF-8"
+											id="login-nav">
+											<div class="form-group">
+												<label class="sr-only">E-Mail</label> <input type="email"
+													ng-model="email" class="form-control" id="inputEmail"
+													placeholder="E-Mail " required>
 											</div>
+											<div class="form-group">
+												<label class="sr-only" for="exampleInputPassword2">Passwort</label>
+												<input type="password" class="form-control"
+													ng-model="passwort" id="inputPasswort"
+													placeholder="Passwort" required>
+											</div>
+											<div class="form-group">
+												<button type="submit" class="btn btn-primary btn-block"
+													ng-click="anmelden()">Anmelden</button>
+											</div>
+											<div class="fehlermeldung" ng-model="fehler">{{fehler}}</div>
 										</form>
 									</div>
-								</section>
+									<div class="bottom text-center">
+										<a href="#" data-toggle="modal"
+											data-target="#modal_registrierung"><b>Jetzt kostenlos
+												registrieren</b></a>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<ul id="eingeloggt" class="dropdown-menu">
+							<li>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="bottom text-center">
+											<a href="/profil">Zu Eurem Profil</a>
+										</div>
+										<input type="button" value="Ausloggen" ng-click="logout()"
+											class="btn btn-primary btn-block" style="margin-bottom: 10px"></input>
+									</div>
+								</div>
+							</li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- Navigation - Ende----------------------------------------------------------------------------------------------------------------------------------- -->
+	<div id="searchdiv">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-8">
+					<form action="" class="search-form">
+						<div class="form-group has-feedback">
+							<label for="search" class="sr-only">Search</label> <input
+								type="text" class="form-control" name="search" id="search"
+								placeholder="Stichwortsuche"> <span
+								class="glyphicon glyphicon-search form-control-feedback"></span>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mainbody" id="uploadBody" ng-app="upload">
+		<div class="col-md-1"></div>
+		<div class="col-md-10" class="maindiv">
+			<div class="maintextdiv" style="padding-top: 2%;">
+				<h3 style="margin-bottom: 3%; top: 2%;">Stellen-Upload</h3>
+				<div id="maintabdiv" ng-controller="uploadCtrl">
+					<h5 class="clientOk">{{uploadErfolg}}</h5>
+					<h5 class="clientFehler">{{uploadFehler}}</h5>
+					<div class="btn-pref btn-group btn-group-justified btn-group-lg"
+						role="group" aria-label="" id="buttongurppe">
+						<div class="btn-group" role="group">
+							<button type="button" id="was" class="btn btn-primary"
+								href="#tab1" data-toggle="tab">
+								<span class="glyphicon glyphicon-education" aria-hidden="true"></span>
+								<div class="hidden-xs">Was?</div>
+							</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" id="wo" class="btn btn-default"
+								href="#tab2" data-toggle="tab">
+								<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+								<div class="hidden-xs">Wo?</div>
+							</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" id="wann" class="btn btn-default"
+								href="#tab3" data-toggle="tab">
+								<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+								<div class="hidden-xs">Wann?</div>
+							</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" id="fertig" class="btn btn-default"
+								href="#tab4" data-toggle="tab">
+								<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								<div class="hidden-xs">Fertig</div>
+							</button>
+						</div>
+					</div>
+
+					<div class="well">
+						<div class="tab-content">
+							<div class="tab-pane fade in active" id="tab1">
+								<div id="alerttab1" class="alert alert-danger" role="alert">
+									Füllen Sie bitte <b>ALLE</b> Felder aus
+								</div>
+								<p>
+									<input type="text" ng-model="titel"
+										placeholder="Titel der Stelle" id="titelupload" />
+								</p>
+								<p>
+									<input type="text" ng-model="link"
+										placeholder="Link zur Stellenbeschreibung (Homepage)"
+										id="link" />
+								</p>
+								Studiengang
+								<p>
+									<select id="selectstudi2" multiple>
+										<option value="Informatik">Informatik</option>
+										<option value="BWL">BWL</option>
+										<option value="Maschinenbau">Maschinenbau</option>
+
+									</select>
+								</p>
+								<p>
+									<textarea id="desc" ng-model="beschreibung"
+										placeholder="Beschreibung der Stelle ... "></textarea>
+								</p>
+								<button id="wetiertab" ng-click="ngWeiter1()"
+									onclick="weitertab('tab1')"
+									class="speichernweiter btn btn-primary">Speichern &
+									Weiter</button>
+							</div>
+
+							<div id="map"></div>
+							<div class="tab-pane fade in" id="tab2">
+
+								<div id="alerttab2" class="alert alert-danger" role="alert">
+									Füllen Sie bitte <b>ALLE</b> Felder aus
+								</div>
+
+								<p>
+									<input type="text" placeholder="Stadt/PLZ" id="stadt"
+										ng-model="stadt" />
+								</p>
+								<div id="mapstadt"></div>
+								<p>
+									<select id="bundesland">
+										<option value="">Bundesland</option>
+										<option value="Bayern">Bayern</option>
+										<option value="Baden-Württemberg">Ba-Wü</option>
+									</select>
+								</p>
+
+								<button id="wetiertab" onclick="zuruecktab('tab2')"
+									class="speichernweiter btn btn-primary">Zurück</button>
+								<button id="wetiertab" onclick="weitertab('tab2')"
+									ng-click="ngWeiter2()" class="speichernweiter btn btn-primary">
+									Speichern & Weiter</button>
+							</div>
+							<div class="tab-pane fade in" id="tab3">
+								<div id="alerttab3" class="alert alert-danger" role="alert">
+									Füllen Sie bitte <b>ALLE</b> Felder aus
+								</div>
+								<p>
+									<input type="date" id="datum" />
+								</p>
+								<p>
+									<select id="selectdauer2">
+										<option value="">Monate</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+									</select>
+								</p>
+
+								<button id="zuruecktab" onclick="zuruecktab('tab3')"
+									class="speichernweiter btn btn-primary">Zurück</button>
+								<button id="wetiertab" onclick="weitertab('tab3')"
+									ng-click="ngWeiter3()" class="speichernweiter btn btn-primary">
+									Speichern & Weiter</button>
+							</div>
+							<div class="tab-pane fade in" id="tab4">
+								<table class="table table-bordered">
+									<tr>
+										<th>Titel</th>
+										<td><div id="titelfertig"></div></td>
+									</tr>
+									<tr>
+										<th>Studiengang</th>
+										<td><div id="studifertig"></div></td>
+									</tr>
+									<tr>
+										<th>Stadt</th>
+										<td><div id="stadtfertig"></div></td>
+									</tr>
+									<tr>
+										<th>Bundesland</th>
+										<td><div id="bundeslandfertig"></div></td>
+									</tr>
+									<tr>
+										<th>Praktikumsanfang</th>
+										<td><div id="anfangfertig"></div></td>
+									</tr>
+									<tr>
+										<th>Dauer</th>
+										<td><div id="dauerfertig"></div></td>
+									</tr>
+									<tr>
+										<th>Link zur Stellenbeschreibung</th>
+										<td><div id="linkfertig"></div></td>
+									</tr>
+									<tr>
+										<th>Beschreibung</th>
+										<td><div id="descfertig"></div></td>
+									</tr>
+
+								</table>
+
+								<button id="wetiertab" onclick="zuruecktab('tab4')"
+									class="speichernweiter btn btn-primary">Zurück</button>
+								<button id="wetiertab" ng-click="ngFertig()"
+									class="speichernweiter btn btn-success ">Upload</button>
 							</div>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="ngRedirect()">
-							Schließen
-						</button>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<footer>
+				<a a href="/agb" class="menupunkte">AGB </a><a a href="/impressum"
+					class="menupunkte"> Impressum</a>
+			</footer>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<div class="modal fade" id="modal_registrierung"
+		ng-controller="registrierungCtrl" ng-app="registr">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Registrieren</h4>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row" id="wizard">
+							<section id="section_wizard">
+								<div class="wizard">
+									<div class="wizard-inner">
+										<div class="connecting-line"></div>
+										<ul class="nav nav-tabs" role="tablist">
+											<li role="presentation" class="active"><a href="#step1"
+												data-toggle="tab" aria-controls="step1" role="tab"
+												title="E-Mail & Name"> <span class="round-tab"> <i
+														class="glyphicon glyphicon-user"></i>
+												</span>
+											</a></li>
+											<li role="presentation" class="disabled"><a
+												href="#step2" data-toggle="tab" aria-controls="step2"
+												role="tab" title="Passwort"> <span class="round-tab">
+														<i class="glyphicon glyphicon-lock"></i>
+												</span>
+											</a></li>
+											<li role="presentation" class="disabled"><a
+												href="#complete" data-toggle="tab" aria-controls="complete"
+												role="tab" title="Fertig"> <span class="round-tab">
+														<i class="glyphicon glyphicon-ok"></i>
+												</span>
+											</a></li>
+										</ul>
+									</div>
+									<form role="form">
+										<div class="tab-content">
+											<div class="tab-pane active" role="tabpanel" id="step1">
+												<h4>E-Mail & Unternehmensname</h4>
+												<p>
+													<input type="email" placeholder="E-Mail"
+														class="wizard_formular input1" id="email" ng-model="email" />
+												</p>
+												<p>
+													<input type="text" placeholder="Name des Unternehmens"
+														class="wizard_formular input2" id="uname" ng-model="name" />
+												</p>
+												<ul class="list-inline pull-right">
+													<li>
+														<button ng-click="ngWeiter()" type="button"
+															class="btn btn-success next-step" id="buttonstep1"
+															onclick="weiter('step1')">Weiter</button>
+													</li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step2">
+												<h4>Passwort</h4>
+												<p>
+													<input type="password" placeholder="Passwort"
+														class="wizard_formular input1" id="passwort"
+														ng-model="passwort" />
+												</p>
+												<p>
+													<input type="password" placeholder="Passwort wiederholen"
+														class="wizard_formular input2" id="passwortw"
+														ng-model="passwortw" />
+												</p>
+												<ul class="list-inline pull-right">
+													<li>
+														<button type="button" class="btn btn-default prev-step">
+															Zurück</button>
+													</li>
+													<li>
+														<button type="button" class="btn btn-success next-step"
+															onclick="weiter('step2')" ng-click="ngWeiter2()"
+															id="buttonstep2">Weiter</button>
+													</li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="complete">
+												<h4>Fertig</h4>
+												<p ng-model="meldung">{{meldung}}</p>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+									</form>
+								</div>
+							</section>
+						</div>
 					</div>
-				</div><!-- /.modal-content -->
-			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-	</body>
-	<script>
-		$(document).ready(function() {
-			/*$(".btn-pref .btn").click(function() {
-			 $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-			 // $(".tab").addClass("active"); // instead of this do the below
-			 $(this).removeClass("btn-default").addClass("btn-primary");
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						ng-click="ngRedirect()">Schließen</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+</body>
+<script>
+	$(document).ready(
+			function() {
+				/*$(".btn-pref .btn").click(function() {
+				 $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+				 // $(".tab").addClass("active"); // instead of this do the below
+				 $(this).removeClass("btn-default").addClass("btn-primary");
 
-			 });*/
-			
-			$("#alerttab1").hide();
-			$("#alerttab2").hide();
-			$("#alerttab3").hide();
+				 });*/
 
-			$("#wo").addClass("disabled").attr("data-toggle", "");
-			$("#wann").addClass("disabled").attr("data-toggle", "");
-			$("#fertig").addClass("disabled").attr("data-toggle", "");
+				$("#alerttab1").hide();
+				$("#alerttab2").hide();
+				$("#alerttab3").hide();
 
-			$("#was").click(function() {
-				if ($("#was:not([disabled])")) {
-					$("#buttongurppe").find(".btn-primary").removeClass("btn-primary").addClass("btn-default");
-					$("#was").removeClass("btn-default").addClass("btn-primary");
+				$("#wo").addClass("disabled").attr("data-toggle", "");
+				$("#wann").addClass("disabled").attr("data-toggle", "");
+				$("#fertig").addClass("disabled").attr("data-toggle", "");
 
-				}
-			});
+				$("#was").click(
+						function() {
+							if ($("#was:not([disabled])")) {
+								$("#buttongurppe").find(".btn-primary")
+										.removeClass("btn-primary").addClass(
+												"btn-default");
+								$("#was").removeClass("btn-default").addClass(
+										"btn-primary");
 
-			$("#wo").click(function() {
-				if ($("#titelupload").val() == "" || $("#link").val() == "" || $("#selectstudi2").val() == "" || $("#desc").val() == "") {
-					$("#alerttab1").slideDown();
-					console.log("felder nicht alle gefüllt");
-					$("#wo").addClass("disabled").attr("data-toggle", "");
-					$("#wann").addClass("disabled").attr("data-toggle", "");
-				} else {
-					if ($("#wo").hasClass('disabled')) {
-						console.log("");
-					} else {
-						$("#buttongurppe").find(".btn-primary").removeClass("btn-primary").addClass("btn-default");
-						$("#wo").removeClass("btn-default").addClass("btn-primary");
-						$("#wo").attr("data-toggle", "tab");
-						$("#alerttab1").hide();
-						$("#alerttab2").hide();
-						$("#alerttab3").hide();
+							}
+						});
 
+				$("#wo").click(
+						function() {
+							if ($("#titelupload").val() == ""
+									|| $("#link").val() == ""
+									|| $("#selectstudi2").val() == ""
+									|| $("#desc").val() == "") {
+								$("#alerttab1").slideDown();
+								console.log("felder nicht alle gefüllt");
+								$("#wo").addClass("disabled").attr(
+										"data-toggle", "");
+								$("#wann").addClass("disabled").attr(
+										"data-toggle", "");
+							} else {
+								if ($("#wo").hasClass('disabled')) {
+									console.log("");
+								} else {
+									$("#buttongurppe").find(".btn-primary")
+											.removeClass("btn-primary")
+											.addClass("btn-default");
+									$("#wo").removeClass("btn-default")
+											.addClass("btn-primary");
+									$("#wo").attr("data-toggle", "tab");
+									$("#alerttab1").hide();
+									$("#alerttab2").hide();
+									$("#alerttab3").hide();
+
+								}
+							}
+						});
+
+				$("#wann").click(
+						function() {
+							if ($("#titelupload").val() == ""
+									|| $("#link").val() == ""
+									|| $("#selectstudi2").val() == ""
+									|| $("#desc").val() == ""
+									|| $("#stadt").val() == ""
+									|| $("#bundesland").val() == "") {
+								console.log("felder nicht alle gefüllt");
+								$("#wann").addClass("disabled").attr(
+										"data-toggle", "");
+								$("#alerttab2").slideDown();
+							} else {
+								if ($("#wann").hasClass('disabled')) {
+									console.log("");
+								} else {
+									$("#buttongurppe").find(".btn-primary")
+											.removeClass("btn-primary")
+											.addClass("btn-default");
+									$("#wann").removeClass("btn-default")
+											.addClass("btn-primary");
+									$("#wann").attr("data-toggle", "tab");
+									$("#alerttab1").hide();
+									$("#alerttab2").hide();
+									$("#alerttab3").hide();
+								}
+							}
+
+						});
+
+				$("#fertig").click(
+						function() {
+							if ($("#titelupload").val() == ""
+									|| $("#link").val() == ""
+									|| $("#selectstudi2").val() == ""
+									|| $("#desc").val() == ""
+									|| $("#stadt").val() == ""
+									|| $("#bundesland").val() == ""
+									|| $("#datum").val() == ""
+									|| $("#selectdauer2").val() == "") {
+								console.log("felder nicht alle gefüllt");
+								$("#fertig").addClass("disabled").attr(
+										"data-toggle", "");
+								$("#alerttab3").slideDown();
+							} else {
+								if ($("#fertig").hasClass('disabled')) {
+									console.log("");
+								} else {
+									$("#buttongurppe").find(".btn-primary")
+											.removeClass("btn-primary")
+											.addClass("btn-default");
+									$("#fertig").removeClass("btn-default")
+											.addClass("btn-primary");
+									$("#fertig").attr("data-toggle", "tab");
+									$("#alerttab1").hide();
+									$("#alerttab2").hide();
+									$("#alerttab3").hide();
+								}
+							}
+
+							einfuegen();
+						});
+
+				$('.nav-tabs > li a[title]').tooltip();
+
+				//Wizard
+				$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+
+					var $target = $(e.target);
+
+					if ($target.parent().hasClass('disabled')) {
+						return false;
 					}
-				}
-			});
-			
-			$("#wann").click(function() {
-				if ($("#titelupload").val() == "" || $("#link").val() == "" || $("#selectstudi2").val() == "" || $("#desc").val() == "" || $("#stadt").val() == "" || $("#bundesland").val()=="") {
-					console.log("felder nicht alle gefüllt");
-					$("#wann").addClass("disabled").attr("data-toggle", "");
-					$("#alerttab2").slideDown();
-				} else {
-					if ($("#wann").hasClass('disabled')) {
-						console.log("");
-					} else {
-						$("#buttongurppe").find(".btn-primary").removeClass("btn-primary").addClass("btn-default");
-						$("#wann").removeClass("btn-default").addClass("btn-primary");
-						$("#wann").attr("data-toggle", "tab");
-						$("#alerttab1").hide();
-						$("#alerttab2").hide();
-						$("#alerttab3").hide();
-					}
-				}
+				});
+
+				$(".prev-step").click(function(e) {
+
+					var $active = $('.wizard .nav-tabs li.active');
+					prevTab($active);
+
+				});
+
+				var map;
+				var latlng;
+				var geocoder;
+				var marker;
 				
-				
-			});
-			
-			$("#fertig").click(function() {
-				if ($("#titelupload").val() == "" || $("#link").val() == "" || $("#selectstudi2").val() == "" || $("#desc").val() == "" || $("#stadt").val() == "" || $("#bundesland").val()=="" || $("#datum").val() == "" || $("#selectdauer2").val() == "") {
-					console.log("felder nicht alle gefüllt");
-					$("#fertig").addClass("disabled").attr("data-toggle", "");
-					$("#alerttab3").slideDown();
-				} else {
-					if ($("#fertig").hasClass('disabled')) {
-						console.log("");
-					} else {
-						$("#buttongurppe").find(".btn-primary").removeClass("btn-primary").addClass("btn-default");
-						$("#fertig").removeClass("btn-default").addClass("btn-primary");
-						$("#fertig").attr("data-toggle", "tab");
-						$("#alerttab1").hide();
-						$("#alerttab2").hide();
-						$("#alerttab3").hide();
-					}
-				}
-				
-				einfuegen();
-			});
+				window.initMap = function() {
+					map = new google.maps.Map(document.getElementById('map'), {
+						center : {
+							lat : 47.6679899,
+							lng : 9.1701517
+						},
+						zoom : 12
+					});
 
-			$('.nav-tabs > li a[title]').tooltip();
+					google.maps.event.addListener(map, 'click',
+							function(event) {
 
-			//Wizard
-			$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+								marker = new google.maps.Marker({
+									position : event.latLng,
+									map : map
+								});
+								
+								console.log("Marker: " + marker);
 
-				var $target = $(e.target);
+								var lat = marker.getPosition().lat();
+								var lng = marker.getPosition().lng();
+								console.log("lat: " + lat + " lng:" + lng);
+								
+								latlng = new google.maps.LatLng(lat, lng);
+								
+								geocoder = new google.maps.Geocoder().geocode({'latLng' : latlng}, function(results, status) {
+								    if (status == google.maps.GeocoderStatus.OK) {
+								        if (results[1]) {
+								            var country = null, countryCode = null, city = null, cityAlt = null;
+								            var c, lc, component;
+								            for (var r = 0, rl = results.length; r < rl; r += 1) {
+								                var result = results[r];
 
-				if ($target.parent().hasClass('disabled')) {
-					return false;
-				}
-			});
+								                if (!city && result.types[0] === 'locality') {
+								                    for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
+								                        component = result.address_components[c];
 
-			$(".prev-step").click(function(e) {
+								                        if (component.types[0] === 'locality') {
+								                            city = component.long_name;
+								                            stadtGlobal = component.long_name;
+								                            break;
+								                        }
+								                    }
+								                }
+								                else if (!city && !cityAlt && result.types[0] === 'administrative_area_level_1') {
+								                    for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
+								                        component = result.address_components[c];
 
+								                        if (component.types[0] === 'administrative_area_level_1') {
+								                            cityAlt = component.long_name;
+								                            break;
+								                        }
+								                    }
+								                } else if (!country && result.types[0] === 'country') {
+								                    country = result.address_components[0].long_name;
+								                    countryCode = result.address_components[0].short_name;
+								                }
+
+								                if (city && country) {
+								                    break;
+								                }
+								            }
+
+								            console.log("City: " + city + ", City2: " + cityAlt + ", Country: " + country + ", Country Code: " + countryCode);
+								        
+								            $("#mapstadt").html(city);
+								        
+								        }
+								    }
+								});
+								
+								
+							});
+					
+					 
+				}			
+
+	});
+
+	function nextTab(elem) {
+		$(elem).next().find('a[data-toggle="tab"]').click();
+	}
+
+	function prevTab(elem) {
+		$(elem).prev().find('a[data-toggle="tab"]').click();
+	}
+
+	function weiter(step) {
+		if (step == "step1") {
+			if ($('#email').val() != "" && $('#uname').val() != "") {
 				var $active = $('.wizard .nav-tabs li.active');
-				prevTab($active);
-
-			});
-
-		});
-
-		function nextTab(elem) {
-			$(elem).next().find('a[data-toggle="tab"]').click();
-		}
-
-		function prevTab(elem) {
-			$(elem).prev().find('a[data-toggle="tab"]').click();
-		}
-
-		function weiter(step) {
-			if (step == "step1") {
-				if ($('#email').val() != "" && $('#uname').val() != "") {
+				$active.next().removeClass('disabled');
+				nextTab($active);
+			}
+		} else {
+			if (step == "step2") {
+				if ($('#passwort').val() != "" && $('#passwortw').val() != "") {
 					var $active = $('.wizard .nav-tabs li.active');
 					$active.next().removeClass('disabled');
 					nextTab($active);
 				}
+			}
+		}
+	}
+
+	function weitertab(activetab) {
+		if (activetab == "tab1") {
+			if ($("#titelupload").val() == "" || $("#link").val() == ""
+					|| $("#selectstudi2").val() == "" || $("#desc").val() == "") {
+				console.log("felder nicht alle gefüllt");
+				$("#alerttab1").slideDown();
 			} else {
-				if (step == "step2") {
-					if ($('#passwort').val() != "" && $('#passwortw').val() != "") {
-						var $active = $('.wizard .nav-tabs li.active');
-						$active.next().removeClass('disabled');
-						nextTab($active);
-					}
-				}
+				$('#tab1').removeClass("active in");
+				$('#tab2').addClass("active in");
+				$('#was').removeClass("btn-primary").addClass("btn-default");
+				$('#wo').removeClass("btn-default disabled").addClass(
+						"btn-primary");
+				$("#alerttab1").hide();
 			}
 		}
 
-		function weitertab(activetab) {
-			if (activetab == "tab1") {
-				if ($("#titelupload").val() == "" || $("#link").val() == "" || $("#selectstudi2").val() == "" || $("#desc").val() == "") {
-					console.log("felder nicht alle gefüllt");
-					$("#alerttab1").slideDown();
-				} else {
-					$('#tab1').removeClass("active in");
-					$('#tab2').addClass("active in");
-					$('#was').removeClass("btn-primary").addClass("btn-default");
-					$('#wo').removeClass("btn-default disabled").addClass("btn-primary");
-					$("#alerttab1").hide();
-				}
-			}
+		if (activetab == "tab2") {
+			if ($("#stadt").val() == "" || $("#bundesland").val() == "") {
+				console.log("felder nicht alle gefüllt");
+				$("#alerttab2").slideDown();
+			} else {
 
-			if (activetab == "tab2") {
-				if ($("#stadt").val() == "" || $("#bundesland").val() == "") {
-					console.log("felder nicht alle gefüllt");
-					$("#alerttab2").slideDown();
-				} else {
-
-					$('#tab2').removeClass("active in");
-					$('#tab3').addClass("active in");
-					$('#wo').removeClass("btn-primary").addClass("btn-default");
-					$('#wann').removeClass("btn-default disabled").addClass("btn-primary");
-					$("#alerttab2").hide();
-				}
+				$('#tab2').removeClass("active in");
+				$('#tab3').addClass("active in");
+				$('#wo').removeClass("btn-primary").addClass("btn-default");
+				$('#wann').removeClass("btn-default disabled").addClass(
+						"btn-primary");
+				$("#alerttab2").hide();
 			}
-			
-			if (activetab == "tab3") {
-				if ($("#datum").val() == "" || $("#selectdauer2").val() == "") {
-					console.log("felder nicht alle gefüllt");
-					$("#alerttab3").slideDown();
-				} else {
-
-					$('#tab3').removeClass("active in");
-					$('#tab4').addClass("active in");
-					$('#wann').removeClass("btn-primary").addClass("btn-default");
-					$('#fertig').removeClass("btn-default disabled").addClass("btn-primary");
-					$("#alerttab3").hide();
-				}
-			}
-			
-			einfuegen();
 		}
-		
-		function zuruecktab(activetab){
 
-			if (activetab == "tab2") {
+		if (activetab == "tab3") {
+			if ($("#datum").val() == "" || $("#selectdauer2").val() == "") {
+				console.log("felder nicht alle gefüllt");
+				$("#alerttab3").slideDown();
+			} else {
 
-					$('#tab2').removeClass("active in");
-					$('#tab1').addClass("active in");
-					$('#wo').removeClass("btn-primary").addClass("btn-default");
-					$('#was').removeClass("btn-default disabled").addClass("btn-primary");
-				
+				$('#tab3').removeClass("active in");
+				$('#tab4').addClass("active in");
+				$('#wann').removeClass("btn-primary").addClass("btn-default");
+				$('#fertig').removeClass("btn-default disabled").addClass(
+						"btn-primary");
+				$("#alerttab3").hide();
 			}
-			
-			if (activetab == "tab3") {
-				
-
-					$('#tab3').removeClass("active in");
-					$('#tab2').addClass("active in");
-					$('#wann').removeClass("btn-primary").addClass("btn-default");
-					$('#wo').removeClass("btn-default disabled").addClass("btn-primary");
-				}
-				
-			if (activetab == "tab4") {
-				
-
-					$('#tab4').removeClass("active in");
-					$('#tab3').addClass("active in");
-					$('#fertig').removeClass("btn-primary").addClass("btn-default");
-					$('#wann').removeClass("btn-default disabled").addClass("btn-primary");
-				}	
 		}
-		
-		function einfuegen(){
-			var titelupload = $("#titelupload").val();
-			$("#titelfertig").html(titelupload);
-			
-			var link = $("#link").val();
-			$("#linkfertig").html(link);
-			
-			var studi = $("#selectstudi2").val();
-			$("#studifertig").html(studi);
-			
-			var desc = $("#desc").val();
-			$("#descfertig").html(desc);
-			
-			var stadt = $("#stadt").val();
-			$("#stadtfertig").html(stadt);
-			
-			var bundesland = $("#bundesland").val();
-			$("#bundeslandfertig").html(bundesland);
-			
-			var datum = $("#datum").val();
-			$("#anfangfertig").html(datum);
-			
-			var dauer = $("#selectdauer2").val();
-			$("#dauerfertig").html(dauer);
+
+		einfuegen();
+	}
+
+	function zuruecktab(activetab) {
+
+		if (activetab == "tab2") {
+
+			$('#tab2').removeClass("active in");
+			$('#tab1').addClass("active in");
+			$('#wo').removeClass("btn-primary").addClass("btn-default");
+			$('#was').removeClass("btn-default disabled").addClass(
+					"btn-primary");
+
 		}
-	</script>
+
+		if (activetab == "tab3") {
+
+			$('#tab3').removeClass("active in");
+			$('#tab2').addClass("active in");
+			$('#wann').removeClass("btn-primary").addClass("btn-default");
+			$('#wo').removeClass("btn-default disabled")
+					.addClass("btn-primary");
+		}
+
+		if (activetab == "tab4") {
+
+			$('#tab4').removeClass("active in");
+			$('#tab3').addClass("active in");
+			$('#fertig').removeClass("btn-primary").addClass("btn-default");
+			$('#wann').removeClass("btn-default disabled").addClass(
+					"btn-primary");
+		}
+	}
+
+	function einfuegen() {
+		var titelupload = $("#titelupload").val();
+		$("#titelfertig").html(titelupload);
+
+		var link = $("#link").val();
+		$("#linkfertig").html(link);
+
+		var studi = $("#selectstudi2").val();
+		$("#studifertig").html(studi);
+
+		var desc = $("#desc").val();
+		$("#descfertig").html(desc);
+
+		var stadt = $("#stadt").val();
+		$("#stadtfertig").html(stadt);
+
+		var bundesland = $("#bundesland").val();
+		$("#bundeslandfertig").html(bundesland);
+
+		var datum = $("#datum").val();
+		$("#anfangfertig").html(datum);
+
+		var dauer = $("#selectdauer2").val();
+		$("#dauerfertig").html(dauer);
+	}
+</script>
+
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAI4UqmBaiZY63O4rnPKFA-UbTnmiwlYJs&callback=initMap">
+    </script>
 </html>
