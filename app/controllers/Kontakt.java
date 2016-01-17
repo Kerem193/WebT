@@ -42,6 +42,8 @@ public class Kontakt extends Controller {
 				"javax.net.ssl.SSLSocketFactory");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
+		
+		System.out.println("Verbindung erstellt");
 
 		Session session = Session.getInstance(props,
 			new javax.mail.Authenticator() {

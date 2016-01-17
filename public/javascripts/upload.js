@@ -53,6 +53,7 @@ upload.controller('uploadCtrl', function($scope,$http) {
 		stadt = stadtGlobal;
 		console.log("Stadt: " + stadt);
 		bundesland = $("#bundesland").val();
+		$("#stadtfertig").html(stadt);
 		
 	}
 	

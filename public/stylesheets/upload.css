@@ -17,6 +17,16 @@
 	
 	height: 300px;
 	width: 300px;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+
+#mapstadt {
+	
+	padding-bottom: 5px;
+	font-weight: bold;
+	font-size: 14px;
 }
 
 #background {
